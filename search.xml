@@ -4,6 +4,28 @@
   
     
     <entry>
+      <title><![CDATA[使用ViewPager + RadioGroup实现图片轮播等图片展示功能]]></title>
+      <url>http://artharyoung.github.io/2016/05/21/viewpager-image-display/</url>
+      <content type="html"><![CDATA[<p>主要实现如下两个效果：<br><img src="/images/device-2016-05-21-165941.png"><img src="/images/device-2016-05-21-170040.png"><br><a id="more"></a></p>
+<ul>
+<li>tips:对于上面的两种效果，参考过网络上许多实现方法，大多数都是通过自定义控件的各项属性等来实现。<br>个人还是倾向于使用android本身提供的控件来实现这两种效果。</li>
+</ul>
+<h1 id="知识点小结："><a href="#知识点小结：" class="headerlink" title="知识点小结："></a>知识点小结：</h1><ul>
+<li><p>通过复写ViewPagerAdapter的getPageWidth(int position)方法来实现多个item的展示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getPageWidth</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>/<span class="number">3f</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过获取屏幕参数来动态设置ViewPager的高度来适配phone、pad等不同分辨率的显示效果。（ViewPager无法设置高度wrap_content，只能指定固定高度）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取屏幕像素相关信息</span></span><br><span class="line">DisplayMetrics dm = <span class="keyword">new</span> DisplayMetrics();</span><br><span class="line">getWindowManager().getDefaultDisplay().getMetrics(dm);</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据屏幕信息设置ViewPager容器的宽高,为了适配pad和手机</span></span><br><span class="line">mViewPager.setLayoutParams(<span class="keyword">new</span> LinearLayout.LayoutParams(dm.widthPixels, dm.heightPixels * <span class="number">1</span>/<span class="number">3</span>));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>tips:这里注意使用的LayoutParams为ViewPager父布局的属性，比如：父布局为LinearLayout则使用LinearLayout.LayoutParams</p>
+<ul>
+<li>通过RadioGroup动态添加RadioButton来实现切换图片时“点”的切换。这里有两个小细节需要注意：\n<br>1、动态添加的RadioButton需要调用setId(int i)手动设置id,否则setOnCheckedChangeListener的时候找不到子View。\n<br>2、通过setButtonDrawable设置的图片不能居中，始终在View的左边，这是RadioButton源码中onDraw设定的，看到大多数的解决方案都是复写onDraw其实是LayoutParams设置不对，应该使用RadioGroup.LayoutParams然后setMargins实现居中。<a href="http://stackoverflow.com/questions/7905885/margin-set-programmatically-on-radiobutton-not-applied?answertab=active#tab-top" title="stackoverflow" target="_blank" rel="external">stackoverflow</a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">RadioButton tempButton = <span class="keyword">new</span> RadioButton(<span class="keyword">this</span>);</span><br><span class="line">tempButton.setButtonDrawable(R.drawable.game_banner_dot_normal);</span><br><span class="line"></span><br><span class="line">RadioGroup.LayoutParams childParams = <span class="keyword">new</span> RadioGroup.LayoutParams(</span><br><span class="line">            RadioGroup.LayoutParams.WRAP_CONTENT,</span><br><span class="line">            RadioGroup.LayoutParams.WRAP_CONTENT);</span><br><span class="line">childParams.gravity = Gravity.CENTER_HORIZONTAL;</span><br><span class="line">childParams.setMargins((<span class="keyword">int</span>)getResources().getDimension(R.dimen.ui_layout_margin),<span class="number">0</span>,</span><br><span class="line">                    (<span class="keyword">int</span>)getResources().getDimension(R.dimen.ui_layout_margin),<span class="number">0</span>);</span><br><span class="line">tempButton.setId(i);</span><br><span class="line"></span><br><span class="line">mRadioGroup.addView(tempButton,childParams);</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Android序列化 Parcelable与Serializable]]></title>
       <url>http://artharyoung.github.io/2016/05/18/my-new-post/</url>
       <content type="html"><![CDATA[<h2 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h2><p>序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。</p>

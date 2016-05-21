@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://artharyoung.github.io/"/>
-  <updated>2016-05-21T08:25:59.418Z</updated>
+  <updated>2016-05-21T10:13:30.165Z</updated>
   <id>http://artharyoung.github.io/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用ViewPager + RadioGroup实现图片轮播等图片展示功能</title>
+    <link href="http://artharyoung.github.io/2016/05/21/viewpager-image-display/"/>
+    <id>http://artharyoung.github.io/2016/05/21/viewpager-image-display/</id>
+    <published>2016-05-21T08:43:55.000Z</published>
+    <updated>2016-05-21T10:13:30.165Z</updated>
+    
+    <content type="html">&lt;p&gt;主要实现如下两个效果：&lt;br&gt;&lt;img src=&quot;/images/device-2016-05-21-165941.png&quot;&gt;&lt;img src=&quot;/images/device-2016-05-21-170040.png&quot;&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;tips:对于上面的两种效果，参考过网络上许多实现方法，大多数都是通过自定义控件的各项属性等来实现。&lt;br&gt;个人还是倾向于使用android本身提供的控件来实现这两种效果。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;知识点小结：&quot;&gt;&lt;a href=&quot;#知识点小结：&quot; class=&quot;headerlink&quot; title=&quot;知识点小结：&quot;&gt;&lt;/a&gt;知识点小结：&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;通过复写ViewPagerAdapter的getPageWidth(int position)方法来实现多个item的展示：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;getPageWidth&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; position)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;/&lt;span class=&quot;number&quot;&gt;3f&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;通过获取屏幕参数来动态设置ViewPager的高度来适配phone、pad等不同分辨率的显示效果。（ViewPager无法设置高度wrap_content，只能指定固定高度）&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//获取屏幕像素相关信息&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;DisplayMetrics dm = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; DisplayMetrics();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;getWindowManager().getDefaultDisplay().getMetrics(dm);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//根据屏幕信息设置ViewPager容器的宽高,为了适配pad和手机&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mViewPager.setLayoutParams(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; LinearLayout.LayoutParams(dm.widthPixels, dm.heightPixels * &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;/&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;tips:这里注意使用的LayoutParams为ViewPager父布局的属性，比如：父布局为LinearLayout则使用LinearLayout.LayoutParams&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过RadioGroup动态添加RadioButton来实现切换图片时“点”的切换。这里有两个小细节需要注意：\n&lt;br&gt;1、动态添加的RadioButton需要调用setId(int i)手动设置id,否则setOnCheckedChangeListener的时候找不到子View。\n&lt;br&gt;2、通过setButtonDrawable设置的图片不能居中，始终在View的左边，这是RadioButton源码中onDraw设定的，看到大多数的解决方案都是复写onDraw其实是LayoutParams设置不对，应该使用RadioGroup.LayoutParams然后setMargins实现居中。&lt;a href=&quot;http://stackoverflow.com/questions/7905885/margin-set-programmatically-on-radiobutton-not-applied?answertab=active#tab-top&quot; title=&quot;stackoverflow&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;stackoverflow&lt;/a&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;RadioButton tempButton = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; RadioButton(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tempButton.setButtonDrawable(R.drawable.game_banner_dot_normal);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;RadioGroup.LayoutParams childParams = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; RadioGroup.LayoutParams(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            RadioGroup.LayoutParams.WRAP_CONTENT,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            RadioGroup.LayoutParams.WRAP_CONTENT);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;childParams.gravity = Gravity.CENTER_HORIZONTAL;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;childParams.setMargins((&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)getResources().getDimension(R.dimen.ui_layout_margin),&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;)getResources().getDimension(R.dimen.ui_layout_margin),&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tempButton.setId(i);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mRadioGroup.addView(tempButton,childParams);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;主要实现如下两个效果：&lt;br&gt;&lt;img src=&quot;/images/device-2016-05-21-165941.png&quot;&gt;&lt;img src=&quot;/images/device-2016-05-21-170040.png&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://artharyoung.github.io/categories/Android/"/>
+    
+    
+      <category term="View" scheme="http://artharyoung.github.io/tags/View/"/>
+    
+  </entry>
   
   <entry>
     <title>Android序列化 Parcelable与Serializable</title>
