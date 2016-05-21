@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://artharyoung.github.io/"/>
-  <updated>2016-05-21T10:19:28.197Z</updated>
+  <updated>2016-05-21T10:30:09.577Z</updated>
   <id>http://artharyoung.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://artharyoung.github.io/2016/05/21/viewpager-image-display/"/>
     <id>http://artharyoung.github.io/2016/05/21/viewpager-image-display/</id>
     <published>2016-05-21T08:43:55.000Z</published>
-    <updated>2016-05-21T10:19:28.197Z</updated>
+    <updated>2016-05-21T10:30:09.577Z</updated>
     
-    <content type="html">&lt;p&gt;主要实现如下两个效果：&lt;br&gt;&lt;img src=&quot;/images/device-2016-05-21-165941.png&quot;&gt;&lt;img src=&quot;/images/device-2016-05-21-170040.png&quot;&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;主要实现如下两个效果：&lt;br&gt;&lt;img src=&quot;/images/device-2016-05-21-165941.png&quot;&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;/images/device-2016-05-21-170040.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/artharyoung/ViewPagerImageDisplay&quot; title=&quot;源代码&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;源代码&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;tips:对于上面的两种效果，参考过网络上许多实现方法，大多数都是通过自定义控件的各项属性等来实现。&lt;br&gt;个人还是倾向于使用android本身提供的控件来实现这两种效果。&lt;/li&gt;
@@ -43,7 +43,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;主要实现如下两个效果：&lt;br&gt;&lt;img src=&quot;/images/device-2016-05-21-165941.png&quot;&gt;&lt;img src=&quot;/images/device-2016-05-21-170040.png&quot;&gt;&lt;br&gt;
+      &lt;p&gt;主要实现如下两个效果：&lt;br&gt;&lt;img src=&quot;/images/device-2016-05-21-165941.png&quot;&gt;&lt;br&gt;
     
     </summary>
     
