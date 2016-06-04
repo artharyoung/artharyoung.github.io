@@ -86,13 +86,13 @@
 <meta property="og:url" content="http://artharyoung.github.io/2016/06/04/2016-6-4/index.html">
 <meta property="og:site_name" content="artharyoung's blog">
 <meta property="og:description" content="说起在APP中添加分享功能，也在项目开发中集成过第三方的社会化组件，功能做出来了之后就发现坑其实挺多的，比如APP体积增加3~4MB，微信、微博等社区集成都需要申请appkey等。当然，一般第三方的社会化组件往往不只是集成分享功能，还会集成账号授权登陆等，而系统的分享功能就比较单纯了。这两天学习了一下系统自带的分享功能，写一篇笔记记录一下。">
-<meta property="og:image" content="https://github.com/AndroidTips/share/blob/master/images/20160531090847.jpg">
-<meta property="og:image" content="https://github.com/AndroidTips/share/blob/master/images/20160531090856.jpg">
-<meta property="og:updated_time" content="2016-06-04T14:36:41.786Z">
+<meta property="og:image" content="http://artharyoung.github.io/images/20160531090847.jpg">
+<meta property="og:image" content="http://artharyoung.github.io/images/20160531090856.jpg">
+<meta property="og:updated_time" content="2016-06-04T14:41:15.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="APP分享功能的实现">
 <meta name="twitter:description" content="说起在APP中添加分享功能，也在项目开发中集成过第三方的社会化组件，功能做出来了之后就发现坑其实挺多的，比如APP体积增加3~4MB，微信、微博等社区集成都需要申请appkey等。当然，一般第三方的社会化组件往往不只是集成分享功能，还会集成账号授权登陆等，而系统的分享功能就比较单纯了。这两天学习了一下系统自带的分享功能，写一篇笔记记录一下。">
-<meta name="twitter:image" content="https://github.com/AndroidTips/share/blob/master/images/20160531090847.jpg">
+<meta name="twitter:image" content="http://artharyoung.github.io/images/20160531090847.jpg">
 
 
 
@@ -339,7 +339,7 @@
       
 
       
-        <p><img src="https://github.com/AndroidTips/share/blob/master/images/20160531090847.jpg" alt="alt_text"> </p>
+        <img src="/images/20160531090847.jpg">
 <ul>
 <li>说起在APP中添加分享功能，也在项目开发中集成过第三方的社会化组件，<br>功能做出来了之后就发现坑其实挺多的，比如APP体积增加3~4MB，微信、微博等社区集成都需要申请appkey等。<br>当然，一般第三方的社会化组件往往不只是集成分享功能，还会集成账号授权登陆等，而系统的分享功能就比较单纯了。这两天学习了一下系统自带的分享功能，写一篇笔记记录一下。<a id="more"></a>
 <h2 id="通过Intent向其他应用发送分享内容"><a href="#通过Intent向其他应用发送分享内容" class="headerlink" title="通过Intent向其他应用发送分享内容"></a>通过Intent向其他应用发送分享内容</h2>先看一下发送邮件的Intent：</li>
@@ -374,7 +374,7 @@
 </li>
 </ul>
 <p>拿到action和MIME类型，然后就该干嘛干嘛去了~这里需要注意的是，我们不知道用户传进来的是什么，用户也有可能传错了MIME类型,<br>还有可能传进来的数据非常大，比如一张特别大的图片。所以数据不建议放在UI线程中处理。</p>
-<h2 id="使用ShareActionProvider分享数据"><a href="#使用ShareActionProvider分享数据" class="headerlink" title="使用ShareActionProvider分享数据"></a>使用ShareActionProvider分享数据</h2><p>ShareActionProvider是在API等级14以后提供的一种分享方式，与上面的分享对比如下：<br><img src="https://github.com/AndroidTips/share/blob/master/images/20160531090856.jpg" alt="alt_text"> </p>
+<h2 id="使用ShareActionProvider分享数据"><a href="#使用ShareActionProvider分享数据" class="headerlink" title="使用ShareActionProvider分享数据"></a>使用ShareActionProvider分享数据</h2><p>ShareActionProvider是在API等级14以后提供的一种分享方式，与上面的分享对比如下：<br><img src="/images/20160531090856.jpg"></p>
 <p>可以发现在UI的显示上还是有很大区别的，ShareActionProvider将分享放在在ActionBar上。使用方法需要现在menu菜单中添加item:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;item android:id=<span class="string">"@+id/action_share"</span></span><br><span class="line">      app:showAsAction=<span class="string">"never"</span></span><br><span class="line">      android:title=<span class="string">"@string/action_share"</span></span><br><span class="line">      app:actionProviderClass=<span class="string">"android.support.v7.widget.ShareActionProvider"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
 <p>然后在onCreateOptionsMenu回调中获取ShareActionProvider：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Inflate the menu; this adds items to the action bar if it is present.</span></span><br><span class="line">    getMenuInflater().inflate(R.menu.main, menu);</span><br><span class="line"></span><br><span class="line">    MenuItem item = menu.findItem(R.id.action_share);</span><br><span class="line">    mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>通过mShareActionProvider.setShareIntent(intent)设置需要分享的内容，intent的设置方式与前面是一样的。</p>
