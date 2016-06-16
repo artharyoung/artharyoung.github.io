@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://artharyoung.github.io/"/>
-  <updated>2016-06-16T15:07:11.084Z</updated>
+  <updated>2016-06-16T15:10:52.900Z</updated>
   <id>http://artharyoung.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://artharyoung.github.io/2016/06/16/2016-6-16/"/>
     <id>http://artharyoung.github.io/2016/06/16/2016-6-16/</id>
     <published>2016-06-16T14:51:52.000Z</published>
-    <updated>2016-06-16T15:07:11.084Z</updated>
+    <updated>2016-06-16T15:10:52.900Z</updated>
     
     <content type="html">&lt;p&gt;最近在自己的项目&lt;a href=&quot;https://github.com/AndroidTips/MDVideo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MDVideo&lt;/a&gt;中添加了半透明的 StatusBar 效果，索性把官方文档中关于这一部分的讲解总结一下，加强一下这一块的记忆。之前做了一年半的 TV 应用开发，由于交互上只处理 OnKey 的事件，所以应用基本都是采用 FullScreen 样式。并且由于当时使用的 Eclipse对 support V7 包的支持完全令人无语，导致这一块细节的了解还是比较陌生的。&lt;/p&gt;
 &lt;p&gt;Google 在 Android 5.0 引入 Material Design，同时很多 ActionBar 的方法被弃用了，通过在 Appcombat V7 包中添加 ToolBar 来替代原有的 ActionBar。由于是引用 Library, 这在版本兼容上避免了很多问题。ToolBar 之前，在 Android 3.0开始，ActionBar包含于 Theme.Holo 主题中，本篇会引用 ActionBar 的一些介绍,以便于了解 ActionBar 在 APP 中的作用，ToolBar 的设计理念与它是一样的，但不赘述怎么使用，因为已经过时了。&lt;/p&gt;
@@ -54,10 +54,9 @@
 &lt;ul&gt;
 &lt;li&gt;ToolBar高度设置为wrap_content&lt;/li&gt;
 &lt;li&gt;ToolBar添加属性android:fitsSystemWindows=”true”&lt;/li&gt;
-&lt;li&gt;父布局添加属性android:fitsSystemWindows=”true”&lt;br&gt;这样可以达到在android 5.0以上系统中状态栏的半透明，如下：&lt;img src=&quot;/images/20160616220805.png&quot;&gt;
-为了兼容API 19的效果，需要在values-v19添加属性：&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;!-- API 19 兼容半透明状态栏 --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;lt;style name=&quot;AppTheme&quot; parent=&quot;@style/BaseAppTheme&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       &amp;lt;item name=&quot;android:windowTranslucentStatus&quot;&amp;gt;true&amp;lt;/item&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;lt;/style&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
+&lt;li&gt;父布局添加属性android:fitsSystemWindows=”true”&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;这样可以达到在android 5.0以上系统中状态栏的半透明，如下：&lt;br&gt;&lt;img src=&quot;/images/20160616220805.jpg&quot;&gt;&lt;br&gt;为了兼容API 19的效果，需要在values-v19添加属性：&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;!-- API 19 兼容半透明状态栏 --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;lt;style name=&quot;AppTheme&quot; parent=&quot;@style/BaseAppTheme&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       &amp;lt;item name=&quot;android:windowTranslucentStatus&quot;&amp;gt;true&amp;lt;/item&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;lt;/style&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;这样，在API 19的机器上状态栏将变为全透明。但是比较坑爹的是，国产手机对系统的更改，使得这样设置并不能达到理想的效果。比如我在小米4 MIUI 7.3的系统上，Android 6.0的机器上状态栏居然全透明了。&lt;br&gt;这时候就不能在style里做兼容了，可以在Activity中设置：&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;initStatusBar&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h2 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://developer.android.com/training/appbar/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《Adding the App Bar》&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://hukai.me/android-training-course-in-chinese/basics/actionbar/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《添加Action Bar》&lt;/a&gt;&lt;/p&gt;
 </content>
