@@ -4,6 +4,21 @@
   
     
     <entry>
+      <title><![CDATA[编程方法学第三课学习笔记]]></title>
+      <url>http://artharyoung.github.io/2016/06/26/karel-and-java/</url>
+      <content type="html"><![CDATA[<h2 id="off-by-one-bug-差一错误"><a href="#off-by-one-bug-差一错误" class="headerlink" title="off-by-one bug 差一错误"></a>off-by-one bug 差一错误</h2><p>差一错误（英语：Off-by-one error，缩写OBOE）是在计数时由于边界条件判断失误导致结果多了一或少了一的错误，通常指计算机编程中循环多了一次或者少了一次的程序错误，属于逻辑错误的一种。比如，程序员在循环中进行比较的时候，本该使用“小于等于”，但却使用了“小于”，或者是程序员没有考虑到一个序列是从0而不是1开始（许多程序语言的数组下标都是这样）。在数学领域，此错误也时有发生。</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%B7%AE%E4%B8%80%E9%94%99%E8%AF%AF" target="_blank" rel="external">wiki</a><br><a id="more"></a></p>
+<h2 id="top-down-design-自顶向下设计"><a href="#top-down-design-自顶向下设计" class="headerlink" title="top-down design 自顶向下设计"></a>top-down design 自顶向下设计</h2><p>1969年，Wirth提出采用“自顶向下逐步求精、分而治之”的原则进行大型程序的设计。其基本思想是：从欲求解的原问题出发，运用科学抽象的方法，把它分解成若干相对独立的小问题，依次细化，直至各个小问题获得解决为止。</p>
+<h3 id="分解的原则"><a href="#分解的原则" class="headerlink" title="分解的原则"></a>分解的原则</h3><ul>
+<li>程序可以解决一个问题，这个问题可以是高阶的</li>
+<li>大部分所写的方法应该在1~15行之间。这样会改变本来的设计观念。</li>
+<li>good names 名字应该描述这个方法是干什么的，解决了什么问题</li>
+<li>注释，注释能够更好的说明方法是干什么的。</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[APP Bar 的使用]]></title>
       <url>http://artharyoung.github.io/2016/06/16/2016-6-16/</url>
       <content type="html"><![CDATA[<p>最近在自己的项目<a href="https://github.com/AndroidTips/MDVideo" target="_blank" rel="external">MDVideo</a>中添加了半透明的 StatusBar 效果，索性把官方文档中关于这一部分的讲解总结一下，加强一下这一块的记忆。之前做了一年半的 TV 应用开发，由于交互上只处理 OnKey 的事件，所以应用基本都是采用 FullScreen 样式。并且由于当时使用的 Eclipse对 support V7 包的支持完全令人无语，导致这一块细节的了解还是比较陌生的。</p>

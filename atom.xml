@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://artharyoung.github.io/"/>
-  <updated>2016-06-16T15:10:52.900Z</updated>
+  <updated>2016-06-26T09:02:02.586Z</updated>
   <id>http://artharyoung.github.io/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>编程方法学第三课学习笔记</title>
+    <link href="http://artharyoung.github.io/2016/06/26/karel-and-java/"/>
+    <id>http://artharyoung.github.io/2016/06/26/karel-and-java/</id>
+    <published>2016-06-26T08:18:01.000Z</published>
+    <updated>2016-06-26T09:02:02.586Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;off-by-one-bug-差一错误&quot;&gt;&lt;a href=&quot;#off-by-one-bug-差一错误&quot; class=&quot;headerlink&quot; title=&quot;off-by-one bug 差一错误&quot;&gt;&lt;/a&gt;off-by-one bug 差一错误&lt;/h2&gt;&lt;p&gt;差一错误（英语：Off-by-one error，缩写OBOE）是在计数时由于边界条件判断失误导致结果多了一或少了一的错误，通常指计算机编程中循环多了一次或者少了一次的程序错误，属于逻辑错误的一种。比如，程序员在循环中进行比较的时候，本该使用“小于等于”，但却使用了“小于”，或者是程序员没有考虑到一个序列是从0而不是1开始（许多程序语言的数组下标都是这样）。在数学领域，此错误也时有发生。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%B7%AE%E4%B8%80%E9%94%99%E8%AF%AF&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;wiki&lt;/a&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;top-down-design-自顶向下设计&quot;&gt;&lt;a href=&quot;#top-down-design-自顶向下设计&quot; class=&quot;headerlink&quot; title=&quot;top-down design 自顶向下设计&quot;&gt;&lt;/a&gt;top-down design 自顶向下设计&lt;/h2&gt;&lt;p&gt;1969年，Wirth提出采用“自顶向下逐步求精、分而治之”的原则进行大型程序的设计。其基本思想是：从欲求解的原问题出发，运用科学抽象的方法，把它分解成若干相对独立的小问题，依次细化，直至各个小问题获得解决为止。&lt;/p&gt;
+&lt;h3 id=&quot;分解的原则&quot;&gt;&lt;a href=&quot;#分解的原则&quot; class=&quot;headerlink&quot; title=&quot;分解的原则&quot;&gt;&lt;/a&gt;分解的原则&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;程序可以解决一个问题，这个问题可以是高阶的&lt;/li&gt;
+&lt;li&gt;大部分所写的方法应该在1~15行之间。这样会改变本来的设计观念。&lt;/li&gt;
+&lt;li&gt;good names 名字应该描述这个方法是干什么的，解决了什么问题&lt;/li&gt;
+&lt;li&gt;注释，注释能够更好的说明方法是干什么的。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;off-by-one-bug-差一错误&quot;&gt;&lt;a href=&quot;#off-by-one-bug-差一错误&quot; class=&quot;headerlink&quot; title=&quot;off-by-one bug 差一错误&quot;&gt;&lt;/a&gt;off-by-one bug 差一错误&lt;/h2&gt;&lt;p&gt;差一错误（英语：Off-by-one error，缩写OBOE）是在计数时由于边界条件判断失误导致结果多了一或少了一的错误，通常指计算机编程中循环多了一次或者少了一次的程序错误，属于逻辑错误的一种。比如，程序员在循环中进行比较的时候，本该使用“小于等于”，但却使用了“小于”，或者是程序员没有考虑到一个序列是从0而不是1开始（许多程序语言的数组下标都是这样）。在数学领域，此错误也时有发生。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%B7%AE%E4%B8%80%E9%94%99%E8%AF%AF&quot;&gt;wiki&lt;/a&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="java" scheme="http://artharyoung.github.io/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://artharyoung.github.io/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>APP Bar 的使用</title>
