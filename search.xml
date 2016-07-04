@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title><![CDATA[Git 学习笔记（二）]]></title>
+      <url>http://artharyoung.github.io/2016/07/04/2016-7-4/</url>
+      <content type="html"><![CDATA[<img src="/images/111_13.png">
+<p>Git存储快照流<br><a id="more"></a></p>
+<h2 id="分支简介"><a href="#分支简介" class="headerlink" title="分支简介"></a>分支简介</h2><ul>
+<li><p>当进行commit操作时，git会保存一个提交对象（commit object）。改提交对象会包含一个指向暂存内容快照的指针，该对象还包含提交信息和指向父对象的指针</p>
+</li>
+<li><p>git 的分支，其实本质上仅仅是指向提交对象的可变指针。Git 的默认分支名字是master。在多次提交操作后，你其实已经有一个指向最后那个提交对象的master分支。他会在每次提交操作中自动向前移动。</p>
+</li>
+<li><p>git 的“master”分支并不是一个特殊分支。它跟其它分支完全没有区别。之所以几乎每一个仓库都有master分支，是因为git init 命令默认创建它，并且大多数人都懒得去改动它。</p>
+</li>
+</ul>
+<h2 id="分支创建"><a href="#分支创建" class="headerlink" title="分支创建"></a>分支创建</h2><p>git branch testing<br>这会在当前所在的提交对象上创建一个指针</p>
+<img src="/images/111_12.png">
+<p>git有一个名为HEAD的特殊指针。指向当前所在的本地分支。git branch仅仅会创建一个新分支，并不会切换到新分支去。</p>
+<img src="/images/111_11.png">
+<p>可以使用git log命令查看各个分支当前所指的对象，使用 –decorate选项<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline --decorate</span><br></pre></td></tr></table></figure></p>
+<h2 id="分支切换"><a href="#分支切换" class="headerlink" title="分支切换"></a>分支切换</h2><p>使用git checkout命令切换分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout testing</span><br></pre></td></tr></table></figure></p>
+<p>这样HEAD就指向testing分支了</p>
+<img src="/images/111_10.png">
+<p>在testing分支上再提交一次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -a -m &quot;made a change&quot;</span><br></pre></td></tr></table></figure></p>
+<img src="/images/111_9.png">
+<p>testing分支向前移动，但是master 分支却没有，它仍然指向运行git checkout时所指的对象。切换回master分支查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure></p>
+<img src="/images/111_8.png">
+<p>这条命令做了两件事。一是使HEAD指向master分支，二是将工作目录恢复成master分支所指向的快照内容。项目将始于一个较旧的版本。从本质上讲，这就是忽略testing分支所做的修改，以便于向另一个方向进行开发。</p>
+<p>分支切换会改变工作目录中的文件，在切换分支时，工作目录中的文件会被改变。如果是切换到一个较旧的分支，工作目录会恢复到该分支最后一次提交时的样子。如果git 不能干净利索地完成这个任务，它将禁止切换分支。</p>
+<p>在master分支上再提交一次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -a -m &quot;made other change&quot;</span><br></pre></td></tr></table></figure></p>
+<img src="/images/111_1.png">
+<p>现在，这个项目的提交历史已经产生了分叉，可以使用git log 命令查看分叉历史。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline --decorate --graph --all</span><br></pre></td></tr></table></figure></p>
+<p>它会输出你的提交历史、各个分支的指向以及项目的分支分叉情况。</p>
+<h2 id="分支的新建与合并"><a href="#分支的新建与合并" class="headerlink" title="分支的新建与合并"></a>分支的新建与合并</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b iss53</span><br></pre></td></tr></table></figure>
+<p>这条指令相当于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch iss53</span><br><span class="line">git checkout iss53</span><br></pre></td></tr></table></figure></p>
+<p>创建一个分支同时切换到那个分支上，在切换分支时，要留意工作目录和暂存区里那些还没有被提交的修改，它可能会和你即将检出的分支产生冲突从而阻止<br>git切换到该分支。最好在切换分支前，保持一个干净的状态。</p>
+<p>修改完成后，使用下列指令来合并分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge iss53</span><br></pre></td></tr></table></figure></p>
+<p>合并后，使用git status指令来查看因冲突而不能合并的文件，在手动处理冲突后，再提交一次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -a -m &quot;merge&quot;</span><br></pre></td></tr></table></figure></p>
+<p>合并完成，iss53分支已经不再需要了，可以使用-d选项来删除分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d iss53</span><br></pre></td></tr></table></figure></p>
+<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>查看当前分支列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -v</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看每个分支的最后一次提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--merged</span><br><span class="line">--no-merged</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>两个选项用来过滤和查看已合并到当前分支的分支和未合并到当前分支的分支<br>然后对已合并的分支进行删除。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Git 学习笔记（一）]]></title>
       <url>http://artharyoung.github.io/2016/07/02/2016-7-2/</url>
       <content type="html"><![CDATA[<p>话说使用Git也有三个多月了，之前一直在用SVN管理代码。重复的敲了这么久的commit&amp;add指令，其实并没有真正理解其中的含义，系统的学习和整理一些知识，才能构建自己的知识体系。于是找来官方的文档，打算好好看一下。其实相关的学习在一周前已经完成了，一直没有整理出来。本篇的知识主要来自<a href="https://git-scm.com/book/zh/v2" target="_blank" rel="external">Pro Git</a>的前两章，”分支”我打算单独记一篇，毕竟是Git的杀手锏。<br><a id="more"></a></p>

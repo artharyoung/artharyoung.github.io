@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="IPC机制," />
+  <meta name="keywords" content="git," />
 
 
 
@@ -80,28 +80,24 @@
 
 
 
-<meta name="description" content="作用：序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。
-优点：
-永久性的保存对象，保存对象的字节序列到本地文件中；
-通过序列化对象在网络中传递对象；
-通过序列化在进程中传递对象；">
+<meta name="description" content="Git存储快照流">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android序列化 Parcelable与Serializable">
-<meta property="og:url" content="http://artharyoung.github.io/2016/05/18/my-new-post/index.html">
+<meta property="og:title" content="Git 学习笔记（二）">
+<meta property="og:url" content="http://artharyoung.github.io/2016/07/04/2016-7-4/index.html">
 <meta property="og:site_name" content="artharyoung's blog">
-<meta property="og:description" content="作用：序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。
-优点：
-永久性的保存对象，保存对象的字节序列到本地文件中；
-通过序列化对象在网络中传递对象；
-通过序列化在进程中传递对象；">
-<meta property="og:updated_time" content="2016-05-21T08:25:59.418Z">
+<meta property="og:description" content="Git存储快照流">
+<meta property="og:image" content="http://artharyoung.github.io/images/111_13.png">
+<meta property="og:image" content="http://artharyoung.github.io/images/111_12.png">
+<meta property="og:image" content="http://artharyoung.github.io/images/111_11.png">
+<meta property="og:image" content="http://artharyoung.github.io/images/111_10.png">
+<meta property="og:image" content="http://artharyoung.github.io/images/111_9.png">
+<meta property="og:image" content="http://artharyoung.github.io/images/111_8.png">
+<meta property="og:image" content="http://artharyoung.github.io/images/111_1.png">
+<meta property="og:updated_time" content="2016-07-04T15:46:16.441Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android序列化 Parcelable与Serializable">
-<meta name="twitter:description" content="作用：序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。
-优点：
-永久性的保存对象，保存对象的字节序列到本地文件中；
-通过序列化对象在网络中传递对象；
-通过序列化在进程中传递对象；">
+<meta name="twitter:title" content="Git 学习笔记（二）">
+<meta name="twitter:description" content="Git存储快照流">
+<meta name="twitter:image" content="http://artharyoung.github.io/images/111_13.png">
 
 
 
@@ -119,7 +115,7 @@
   };
 </script>
 
-  <title> Android序列化 Parcelable与Serializable | artharyoung's blog </title>
+  <title> Git 学习笔记（二） | artharyoung's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -288,7 +284,7 @@
             
             
               
-                Android序列化 Parcelable与Serializable
+                Git 学习笔记（二）
               
             
           </h1>
@@ -300,8 +296,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-18T22:27:20+08:00" content="2016-05-18">
-              2016-05-18
+            <time itemprop="dateCreated" datetime="2016-07-04T23:06:19+08:00" content="2016-07-04">
+              2016-07-04
             </time>
           </span>
 
@@ -314,8 +310,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/版本控制/" itemprop="url" rel="index">
+                    <span itemprop="name">版本控制</span>
                   </a>
                 </span>
 
@@ -330,8 +326,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/18/my-new-post/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/18/my-new-post/" itemprop="commentsCount"></span>
+                <a href="/2016/07/04/2016-7-4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/04/2016-7-4/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -354,23 +350,50 @@
       
 
       
-        <h2 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h2><p>序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。</p>
-<h2 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h2><ul>
-<li>永久性的保存对象，保存对象的字节序列到本地文件中；</li>
-<li>通过序列化对象在网络中传递对象；</li>
-<li>通过序列化在进程中传递对象；<a id="more"></a>
-<h2 id="序列化方法："><a href="#序列化方法：" class="headerlink" title="序列化方法："></a>序列化方法：</h2></li>
-<li>实现Serializable接口，JAVA提供的一个序列化接口。它是一个空接口，为对象提供标准的序列化与反序列化操作。</li>
-<li>实现Parcelable接口，Google为Android序列化提供的一个接口，只要实现这个接口，一个类的对象就可以实现序列化并可以通过Intent和Binder传递。</li>
+        <img src="/images/111_13.png">
+<p>Git存储快照流<br><a id="more"></a></p>
+<h2 id="分支简介"><a href="#分支简介" class="headerlink" title="分支简介"></a>分支简介</h2><ul>
+<li><p>当进行commit操作时，git会保存一个提交对象（commit object）。改提交对象会包含一个指向暂存内容快照的指针，该对象还包含提交信息和指向父对象的指针</p>
+</li>
+<li><p>git 的分支，其实本质上仅仅是指向提交对象的可变指针。Git 的默认分支名字是master。在多次提交操作后，你其实已经有一个指向最后那个提交对象的master分支。他会在每次提交操作中自动向前移动。</p>
+</li>
+<li><p>git 的“master”分支并不是一个特殊分支。它跟其它分支完全没有区别。之所以几乎每一个仓库都有master分支，是因为git init 命令默认创建它，并且大多数人都懒得去改动它。</p>
+</li>
 </ul>
-<h2 id="差异比较："><a href="#差异比较：" class="headerlink" title="差异比较："></a>差异比较：</h2><ul>
-<li>在使用内存时，Parcelable比Serializable性能高。</li>
-<li>Serializable在序列化时会产生大量的临时变量，引起频繁的GC。</li>
-<li>Parcelable不能使用在要将数据储存在磁盘上的情况，因为Parcelable不能很好的保证数据的持续性，在外界有变化的情况下；</li>
+<h2 id="分支创建"><a href="#分支创建" class="headerlink" title="分支创建"></a>分支创建</h2><p>git branch testing<br>这会在当前所在的提交对象上创建一个指针</p>
+<img src="/images/111_12.png">
+<p>git有一个名为HEAD的特殊指针。指向当前所在的本地分支。git branch仅仅会创建一个新分支，并不会切换到新分支去。</p>
+<img src="/images/111_11.png">
+<p>可以使用git log命令查看各个分支当前所指的对象，使用 –decorate选项<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline --decorate</span><br></pre></td></tr></table></figure></p>
+<h2 id="分支切换"><a href="#分支切换" class="headerlink" title="分支切换"></a>分支切换</h2><p>使用git checkout命令切换分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout testing</span><br></pre></td></tr></table></figure></p>
+<p>这样HEAD就指向testing分支了</p>
+<img src="/images/111_10.png">
+<p>在testing分支上再提交一次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -a -m &quot;made a change&quot;</span><br></pre></td></tr></table></figure></p>
+<img src="/images/111_9.png">
+<p>testing分支向前移动，但是master 分支却没有，它仍然指向运行git checkout时所指的对象。切换回master分支查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure></p>
+<img src="/images/111_8.png">
+<p>这条命令做了两件事。一是使HEAD指向master分支，二是将工作目录恢复成master分支所指向的快照内容。项目将始于一个较旧的版本。从本质上讲，这就是忽略testing分支所做的修改，以便于向另一个方向进行开发。</p>
+<p>分支切换会改变工作目录中的文件，在切换分支时，工作目录中的文件会被改变。如果是切换到一个较旧的分支，工作目录会恢复到该分支最后一次提交时的样子。如果git 不能干净利索地完成这个任务，它将禁止切换分支。</p>
+<p>在master分支上再提交一次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -a -m &quot;made other change&quot;</span><br></pre></td></tr></table></figure></p>
+<img src="/images/111_1.png">
+<p>现在，这个项目的提交历史已经产生了分叉，可以使用git log 命令查看分叉历史。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline --decorate --graph --all</span><br></pre></td></tr></table></figure></p>
+<p>它会输出你的提交历史、各个分支的指向以及项目的分支分叉情况。</p>
+<h2 id="分支的新建与合并"><a href="#分支的新建与合并" class="headerlink" title="分支的新建与合并"></a>分支的新建与合并</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b iss53</span><br></pre></td></tr></table></figure>
+<p>这条指令相当于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch iss53</span><br><span class="line">git checkout iss53</span><br></pre></td></tr></table></figure></p>
+<p>创建一个分支同时切换到那个分支上，在切换分支时，要留意工作目录和暂存区里那些还没有被提交的修改，它可能会和你即将检出的分支产生冲突从而阻止<br>git切换到该分支。最好在切换分支前，保持一个干净的状态。</p>
+<p>修改完成后，使用下列指令来合并分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge iss53</span><br></pre></td></tr></table></figure></p>
+<p>合并后，使用git status指令来查看因冲突而不能合并的文件，在手动处理冲突后，再提交一次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -a -m &quot;merge&quot;</span><br></pre></td></tr></table></figure></p>
+<p>合并完成，iss53分支已经不再需要了，可以使用-d选项来删除分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d iss53</span><br></pre></td></tr></table></figure></p>
+<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>查看当前分支列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -v</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看每个分支的最后一次提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--merged</span><br><span class="line">--no-merged</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2 id="使用方法："><a href="#使用方法：" class="headerlink" title="使用方法："></a>使用方法：</h2><p>Serializable:<br>在需要序列化的类中实现Sericalizable接口，并添加serialVersionUID。<br>tips:File=&gt;Settings…=&gt;Inspections=&gt;Serialization issues=&gt;Serializable class without ‘serialVersionUID’勾选上。Alt+ Enter自动生成serialVersionUID。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//序列化</span></span><br><span class="line">UserBean userBean = <span class="keyword">new</span> UserBean();</span><br><span class="line">userBean.setAge(<span class="number">24</span>);</span><br><span class="line">userBean.setName(<span class="string">"young"</span>);</span><br><span class="line"></span><br><span class="line">File file = <span class="keyword">new</span> File(<span class="string">"path"</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(file));</span><br><span class="line">    out.writeObject(userBean);</span><br><span class="line">    out.close();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//反序列化</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(file));</span><br><span class="line">    UserBean user = (UserBean) in.readObject();</span><br><span class="line">    in.close();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;<span class="keyword">catch</span> (ClassNotFoundException e1)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Parcelable：<br>在需要序列化的类中实现Parcelable接口。通过writeToParcel将你的对象映射成Parcel对象，再通过createFromParcel将parcel映射成你的对象，也可以将Parcel看成是一个流，通过writeToParcel把对象写到流里面，在通过createFromParcel把对象从流里面读取对象，只不过这个过程需要自己来实现，因此写的顺序和读的顺序必须一致；<br>tips:Ctrl + j 选择自动生成Parcelable相关代码，手动补全相关方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> android.os.Parcel;</span><br><span class="line"><span class="keyword">import</span> android.os.Parcelable;</span><br><span class="line"><span class="keyword">import</span> android.support.annotation.NonNull;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserBean</span> <span class="keyword">implements</span> <span class="title">Parcelable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">UserBean</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//顺序与writeToParcel中保持一致，否则反序列化时会错位</span></span><br><span class="line">        name = in.readString();</span><br><span class="line">        age = in.readInt();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(@NonNull Parcel dest, <span class="keyword">int</span> flags)</span> </span>&#123;</span><br><span class="line">        dest.writeString(name);</span><br><span class="line">        dest.writeInt(age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Creator&lt;UserBean&gt; CREATOR = <span class="keyword">new</span> Creator&lt;UserBean&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> UserBean <span class="title">createFromParcel</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> UserBean(in);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> UserBean[] newArray(<span class="keyword">int</span> size) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> UserBean[size];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//发送</span></span><br><span class="line">Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">intent.putExtra(<span class="string">"parcelable"</span>,userBean);</span><br><span class="line"><span class="comment">//接收</span></span><br><span class="line">intent.getParcelableExtra(<span class="string">"parcelable"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>两个选项用来过滤和查看已合并到当前分支的分支和未合并到当前分支的分支<br>然后对已合并的分支进行删除。</p>
 
       
     </div>
@@ -391,7 +414,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/IPC机制/" rel="tag">#IPC机制</a>
+            <a href="/tags/git/" rel="tag">#git</a>
           
         </div>
       
@@ -400,13 +423,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/07/02/2016-7-2/" rel="next" title="Git 学习笔记（一）">
+                <i class="fa fa-chevron-left"></i> Git 学习笔记（一）
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/21/viewpager-image-display/" rel="prev" title="使用ViewPager + RadioGroup实现图片轮播等图片展示功能">
-                使用ViewPager + RadioGroup实现图片轮播等图片展示功能 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -421,10 +444,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/05/18/my-new-post/"
-     data-title="Android序列化 Parcelable与Serializable"
+        <div class="ds-share flat" data-thread-key="2016/07/04/2016-7-4/"
+     data-title="Git 学习笔记（二）"
      data-content=""
-     data-url="http://artharyoung.github.io/2016/05/18/my-new-post/">
+     data-url="http://artharyoung.github.io/2016/07/04/2016-7-4/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -451,8 +474,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/18/my-new-post/"
-           data-title="Android序列化 Parcelable与Serializable" data-url="http://artharyoung.github.io/2016/05/18/my-new-post/">
+      <div class="ds-thread" data-thread-key="2016/07/04/2016-7-4/"
+           data-title="Git 学习笔记（二）" data-url="http://artharyoung.github.io/2016/07/04/2016-7-4/">
       </div>
     
   </div>
@@ -563,7 +586,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用："><span class="nav-number">1.</span> <span class="nav-text">作用：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优点："><span class="nav-number">2.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序列化方法："><span class="nav-number">3.</span> <span class="nav-text">序列化方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#差异比较："><span class="nav-number">4.</span> <span class="nav-text">差异比较：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法："><span class="nav-number">5.</span> <span class="nav-text">使用方法：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支简介"><span class="nav-number">1.</span> <span class="nav-text">分支简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支创建"><span class="nav-number">2.</span> <span class="nav-text">分支创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支切换"><span class="nav-number">3.</span> <span class="nav-text">分支切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支的新建与合并"><span class="nav-number">4.</span> <span class="nav-text">分支的新建与合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理"><span class="nav-number">5.</span> <span class="nav-text">分支管理</span></a></li></ol></div>
             
           </div>
         </section>

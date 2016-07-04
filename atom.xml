@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://artharyoung.github.io/"/>
-  <updated>2016-07-02T07:30:00.680Z</updated>
+  <updated>2016-07-04T15:46:16.441Z</updated>
   <id>http://artharyoung.github.io/</id>
   
   <author>
@@ -14,6 +14,73 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git 学习笔记（二）</title>
+    <link href="http://artharyoung.github.io/2016/07/04/2016-7-4/"/>
+    <id>http://artharyoung.github.io/2016/07/04/2016-7-4/</id>
+    <published>2016-07-04T15:06:19.000Z</published>
+    <updated>2016-07-04T15:46:16.441Z</updated>
+    
+    <content type="html">&lt;img src=&quot;/images/111_13.png&quot;&gt;
+&lt;p&gt;Git存储快照流&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;分支简介&quot;&gt;&lt;a href=&quot;#分支简介&quot; class=&quot;headerlink&quot; title=&quot;分支简介&quot;&gt;&lt;/a&gt;分支简介&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;当进行commit操作时，git会保存一个提交对象（commit object）。改提交对象会包含一个指向暂存内容快照的指针，该对象还包含提交信息和指向父对象的指针&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;git 的分支，其实本质上仅仅是指向提交对象的可变指针。Git 的默认分支名字是master。在多次提交操作后，你其实已经有一个指向最后那个提交对象的master分支。他会在每次提交操作中自动向前移动。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;git 的“master”分支并不是一个特殊分支。它跟其它分支完全没有区别。之所以几乎每一个仓库都有master分支，是因为git init 命令默认创建它，并且大多数人都懒得去改动它。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;分支创建&quot;&gt;&lt;a href=&quot;#分支创建&quot; class=&quot;headerlink&quot; title=&quot;分支创建&quot;&gt;&lt;/a&gt;分支创建&lt;/h2&gt;&lt;p&gt;git branch testing&lt;br&gt;这会在当前所在的提交对象上创建一个指针&lt;/p&gt;
+&lt;img src=&quot;/images/111_12.png&quot;&gt;
+&lt;p&gt;git有一个名为HEAD的特殊指针。指向当前所在的本地分支。git branch仅仅会创建一个新分支，并不会切换到新分支去。&lt;/p&gt;
+&lt;img src=&quot;/images/111_11.png&quot;&gt;
+&lt;p&gt;可以使用git log命令查看各个分支当前所指的对象，使用 –decorate选项&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git log --oneline --decorate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;分支切换&quot;&gt;&lt;a href=&quot;#分支切换&quot; class=&quot;headerlink&quot; title=&quot;分支切换&quot;&gt;&lt;/a&gt;分支切换&lt;/h2&gt;&lt;p&gt;使用git checkout命令切换分支&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git checkout testing&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这样HEAD就指向testing分支了&lt;/p&gt;
+&lt;img src=&quot;/images/111_10.png&quot;&gt;
+&lt;p&gt;在testing分支上再提交一次&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git commit -a -m &amp;quot;made a change&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;img src=&quot;/images/111_9.png&quot;&gt;
+&lt;p&gt;testing分支向前移动，但是master 分支却没有，它仍然指向运行git checkout时所指的对象。切换回master分支查看&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git checkout master&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;img src=&quot;/images/111_8.png&quot;&gt;
+&lt;p&gt;这条命令做了两件事。一是使HEAD指向master分支，二是将工作目录恢复成master分支所指向的快照内容。项目将始于一个较旧的版本。从本质上讲，这就是忽略testing分支所做的修改，以便于向另一个方向进行开发。&lt;/p&gt;
+&lt;p&gt;分支切换会改变工作目录中的文件，在切换分支时，工作目录中的文件会被改变。如果是切换到一个较旧的分支，工作目录会恢复到该分支最后一次提交时的样子。如果git 不能干净利索地完成这个任务，它将禁止切换分支。&lt;/p&gt;
+&lt;p&gt;在master分支上再提交一次&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git commit -a -m &amp;quot;made other change&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;img src=&quot;/images/111_1.png&quot;&gt;
+&lt;p&gt;现在，这个项目的提交历史已经产生了分叉，可以使用git log 命令查看分叉历史。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git log --oneline --decorate --graph --all&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;它会输出你的提交历史、各个分支的指向以及项目的分支分叉情况。&lt;/p&gt;
+&lt;h2 id=&quot;分支的新建与合并&quot;&gt;&lt;a href=&quot;#分支的新建与合并&quot; class=&quot;headerlink&quot; title=&quot;分支的新建与合并&quot;&gt;&lt;/a&gt;分支的新建与合并&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git checkout -b iss53&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这条指令相当于&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git branch iss53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git checkout iss53&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;创建一个分支同时切换到那个分支上，在切换分支时，要留意工作目录和暂存区里那些还没有被提交的修改，它可能会和你即将检出的分支产生冲突从而阻止&lt;br&gt;git切换到该分支。最好在切换分支前，保持一个干净的状态。&lt;/p&gt;
+&lt;p&gt;修改完成后，使用下列指令来合并分支&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git merge iss53&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;合并后，使用git status指令来查看因冲突而不能合并的文件，在手动处理冲突后，再提交一次&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git commit -a -m &amp;quot;merge&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;合并完成，iss53分支已经不再需要了，可以使用-d选项来删除分支&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git branch -d iss53&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;分支管理&quot;&gt;&lt;a href=&quot;#分支管理&quot; class=&quot;headerlink&quot; title=&quot;分支管理&quot;&gt;&lt;/a&gt;分支管理&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git branch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;查看当前分支列表&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git branch -v&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;查看每个分支的最后一次提交&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;--merged&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;--no-merged&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;两个选项用来过滤和查看已合并到当前分支的分支和未合并到当前分支的分支&lt;br&gt;然后对已合并的分支进行删除。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/images/111_13.png&quot;&gt;
+&lt;p&gt;Git存储快照流&lt;br&gt;
+    
+    </summary>
+    
+      <category term="版本控制" scheme="http://artharyoung.github.io/categories/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/"/>
+    
+    
+      <category term="git" scheme="http://artharyoung.github.io/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>Git 学习笔记（一）</title>
