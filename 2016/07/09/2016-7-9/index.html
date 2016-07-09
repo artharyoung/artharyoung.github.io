@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="IPC机制," />
+  <meta name="keywords" content="Android、ExoPlayer," />
 
 
 
@@ -80,28 +80,22 @@
 
 
 
-<meta name="description" content="作用：序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。
-优点：
-永久性的保存对象，保存对象的字节序列到本地文件中；
-通过序列化对象在网络中传递对象；
-通过序列化在进程中传递对象；">
+<meta name="description" content="ExoPlayer是Google开源的播放器，可以算是MediaPlayer的扩展版本吧,因为跟一些小伙伴发起了一个播放器开发的项目，所以接下来打算把学到的东西都写下来。一来，可以方便和其他小伙伴交流，二来，也方便以后自己复习。碍于自己Android知识水平有限，如有错误还请大家多多指教。
+
+注：ExoPlayer版本 r1.5.9，单独分离出来的ExoPlayerDemo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android序列化 Parcelable与Serializable">
-<meta property="og:url" content="http://artharyoung.github.io/2016/05/18/my-new-post/index.html">
+<meta property="og:title" content="ExoPlayer Demo 媒体类型参数">
+<meta property="og:url" content="http://artharyoung.github.io/2016/07/09/2016-7-9/index.html">
 <meta property="og:site_name" content="artharyoung's blog">
-<meta property="og:description" content="作用：序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。
-优点：
-永久性的保存对象，保存对象的字节序列到本地文件中；
-通过序列化对象在网络中传递对象；
-通过序列化在进程中传递对象；">
-<meta property="og:updated_time" content="2016-05-21T08:25:59.418Z">
+<meta property="og:description" content="ExoPlayer是Google开源的播放器，可以算是MediaPlayer的扩展版本吧,因为跟一些小伙伴发起了一个播放器开发的项目，所以接下来打算把学到的东西都写下来。一来，可以方便和其他小伙伴交流，二来，也方便以后自己复习。碍于自己Android知识水平有限，如有错误还请大家多多指教。
+
+注：ExoPlayer版本 r1.5.9，单独分离出来的ExoPlayerDemo">
+<meta property="og:updated_time" content="2016-07-09T12:39:32.150Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android序列化 Parcelable与Serializable">
-<meta name="twitter:description" content="作用：序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。
-优点：
-永久性的保存对象，保存对象的字节序列到本地文件中；
-通过序列化对象在网络中传递对象；
-通过序列化在进程中传递对象；">
+<meta name="twitter:title" content="ExoPlayer Demo 媒体类型参数">
+<meta name="twitter:description" content="ExoPlayer是Google开源的播放器，可以算是MediaPlayer的扩展版本吧,因为跟一些小伙伴发起了一个播放器开发的项目，所以接下来打算把学到的东西都写下来。一来，可以方便和其他小伙伴交流，二来，也方便以后自己复习。碍于自己Android知识水平有限，如有错误还请大家多多指教。
+
+注：ExoPlayer版本 r1.5.9，单独分离出来的ExoPlayerDemo">
 
 
 
@@ -119,7 +113,7 @@
   };
 </script>
 
-  <title> Android序列化 Parcelable与Serializable | artharyoung's blog </title>
+  <title> ExoPlayer Demo 媒体类型参数 | artharyoung's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -288,7 +282,7 @@
             
             
               
-                Android序列化 Parcelable与Serializable
+                ExoPlayer Demo 媒体类型参数
               
             
           </h1>
@@ -300,8 +294,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-18T22:27:20+08:00" content="2016-05-18">
-              2016-05-18
+            <time itemprop="dateCreated" datetime="2016-07-09T19:37:59+08:00" content="2016-07-09">
+              2016-07-09
             </time>
           </span>
 
@@ -314,8 +308,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/播放器/" itemprop="url" rel="index">
+                    <span itemprop="name">播放器</span>
                   </a>
                 </span>
 
@@ -330,8 +324,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/18/my-new-post/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/18/my-new-post/" itemprop="commentsCount"></span>
+                <a href="/2016/07/09/2016-7-9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/09/2016-7-9/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -354,23 +348,17 @@
       
 
       
-        <h2 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h2><p>序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。</p>
-<h2 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h2><ul>
-<li>永久性的保存对象，保存对象的字节序列到本地文件中；</li>
-<li>通过序列化对象在网络中传递对象；</li>
-<li>通过序列化在进程中传递对象；<a id="more"></a>
-<h2 id="序列化方法："><a href="#序列化方法：" class="headerlink" title="序列化方法："></a>序列化方法：</h2></li>
-<li>实现Serializable接口，JAVA提供的一个序列化接口。它是一个空接口，为对象提供标准的序列化与反序列化操作。</li>
-<li>实现Parcelable接口，Google为Android序列化提供的一个接口，只要实现这个接口，一个类的对象就可以实现序列化并可以通过Intent和Binder传递。</li>
+        <p><a href="https://github.com/google/ExoPlayer" target="_blank" rel="external">ExoPlayer</a>是Google开源的播放器，可以算是<a href="https://developer.android.com/reference/android/media/MediaPlayer.html" target="_blank" rel="external">MediaPlayer</a>的扩展版本吧,因为跟一些小伙伴发起了一个播放器开发的项目，所以接下来打算把学到的东西都写下来。一来，可以方便和其他小伙伴交流，二来，也方便以后自己复习。碍于自己Android知识水平有限，如有错误还请大家多多指教。</p>
+<ul>
+<li>注：ExoPlayer版本 r1.5.9，单独分离出来的<a href="https://github.com/artharyoung/ExoPlayerDemo" target="_blank" rel="external">ExoPlayerDemo</a><a id="more"></a>
+</li>
 </ul>
-<h2 id="差异比较："><a href="#差异比较：" class="headerlink" title="差异比较："></a>差异比较：</h2><ul>
-<li>在使用内存时，Parcelable比Serializable性能高。</li>
-<li>Serializable在序列化时会产生大量的临时变量，引起频繁的GC。</li>
-<li>Parcelable不能使用在要将数据储存在磁盘上的情况，因为Parcelable不能很好的保证数据的持续性，在外界有变化的情况下；</li>
-</ul>
-<h2 id="使用方法："><a href="#使用方法：" class="headerlink" title="使用方法："></a>使用方法：</h2><p>Serializable:<br>在需要序列化的类中实现Sericalizable接口，并添加serialVersionUID。<br>tips:File=&gt;Settings…=&gt;Inspections=&gt;Serialization issues=&gt;Serializable class without ‘serialVersionUID’勾选上。Alt+ Enter自动生成serialVersionUID。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//序列化</span></span><br><span class="line">UserBean userBean = <span class="keyword">new</span> UserBean();</span><br><span class="line">userBean.setAge(<span class="number">24</span>);</span><br><span class="line">userBean.setName(<span class="string">"young"</span>);</span><br><span class="line"></span><br><span class="line">File file = <span class="keyword">new</span> File(<span class="string">"path"</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(file));</span><br><span class="line">    out.writeObject(userBean);</span><br><span class="line">    out.close();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//反序列化</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(file));</span><br><span class="line">    UserBean user = (UserBean) in.readObject();</span><br><span class="line">    in.close();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;<span class="keyword">catch</span> (ClassNotFoundException e1)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Parcelable：<br>在需要序列化的类中实现Parcelable接口。通过writeToParcel将你的对象映射成Parcel对象，再通过createFromParcel将parcel映射成你的对象，也可以将Parcel看成是一个流，通过writeToParcel把对象写到流里面，在通过createFromParcel把对象从流里面读取对象，只不过这个过程需要自己来实现，因此写的顺序和读的顺序必须一致；<br>tips:Ctrl + j 选择自动生成Parcelable相关代码，手动补全相关方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> android.os.Parcel;</span><br><span class="line"><span class="keyword">import</span> android.os.Parcelable;</span><br><span class="line"><span class="keyword">import</span> android.support.annotation.NonNull;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserBean</span> <span class="keyword">implements</span> <span class="title">Parcelable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">UserBean</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//顺序与writeToParcel中保持一致，否则反序列化时会错位</span></span><br><span class="line">        name = in.readString();</span><br><span class="line">        age = in.readInt();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(@NonNull Parcel dest, <span class="keyword">int</span> flags)</span> </span>&#123;</span><br><span class="line">        dest.writeString(name);</span><br><span class="line">        dest.writeInt(age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Creator&lt;UserBean&gt; CREATOR = <span class="keyword">new</span> Creator&lt;UserBean&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> UserBean <span class="title">createFromParcel</span><span class="params">(Parcel in)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> UserBean(in);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> UserBean[] newArray(<span class="keyword">int</span> size) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> UserBean[size];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//发送</span></span><br><span class="line">Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">intent.putExtra(<span class="string">"parcelable"</span>,userBean);</span><br><span class="line"><span class="comment">//接收</span></span><br><span class="line">intent.getParcelableExtra(<span class="string">"parcelable"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>在Demo中可以看到，流媒体播放的请求都是以Intent的形式，封装一个<a href="https://github.com/artharyoung/ExoPlayerDemo/blob/master/app/src/main/java/com/artharyoung/exoplayerdemo/Samples.java" target="_blank" rel="external">Sample</a>去拉起一个播放页面的Activity。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Intent mpdIntent = <span class="keyword">new</span> Intent(mContext, PlayerActivity.class)</span><br><span class="line">                .setData(Uri.parse(sample.uri))</span><br><span class="line">                .putExtra(PlayerActivity.CONTENT_ID_EXTRA, sample.contentId)</span><br><span class="line">                .putExtra(PlayerActivity.CONTENT_TYPE_EXTRA, sample.type)</span><br><span class="line">                .putExtra(PlayerActivity.PROVIDER_EXTRA, sample.provider);</span><br><span class="line">        mContext.startActivity(mpdIntent);</span><br></pre></td></tr></table></figure></p>
+<p>而在Sample的构造方法中，需要传入媒体的类型：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Sample[] CNTV_DASH = <span class="keyword">new</span> Sample[]&#123;</span><br><span class="line">            <span class="keyword">new</span> Sample(<span class="string">"CCTV-1HD"</span>,</span><br><span class="line">            <span class="string">"http://vod.cdn4.cmvideo.cn/envivo_v/HD/cctv1/450/01.m3u8"</span>, Util.TYPE_HLS),</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></p>
+<p>同时在PlayerActivity中可以看到，根据不同的流媒体类型会回调不同的接口：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> RendererBuilder <span class="title">getRendererBuilder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String userAgent = Util.getUserAgent(<span class="keyword">this</span>, <span class="string">"PlayerActivity"</span>);</span><br><span class="line">        <span class="keyword">switch</span> (contentType) &#123;</span><br><span class="line">            <span class="keyword">case</span> Util.TYPE_SS:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> SmoothStreamingRendererBuilder(<span class="keyword">this</span>, userAgent,</span><br><span class="line">                        contentUri.toString(),</span><br><span class="line">                        <span class="keyword">new</span> SmoothStreamingTestMediaDrmCallback());</span><br><span class="line">            <span class="keyword">case</span> Util.TYPE_DASH:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> DashRendererBuilder(<span class="keyword">this</span>, userAgent, contentUri.toString(),</span><br><span class="line">                        <span class="keyword">new</span> WidevineTestMediaDrmCallback(contentId, provider));</span><br><span class="line">            <span class="keyword">case</span> Util.TYPE_HLS:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> HlsRendererBuilder(<span class="keyword">this</span>, userAgent, contentUri.toString());</span><br><span class="line">            <span class="keyword">case</span> Util.TYPE_OTHER:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> ExtractorRendererBuilder(<span class="keyword">this</span>, userAgent, contentUri);</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Unsupported type: "</span> + contentType);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>接着前面的线索，查找Util类中的类型参数，如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">   * Value returned by &#123;<span class="doctag">@link</span> #inferContentType(String)&#125; for DASH manifests.</span><br><span class="line">   */</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TYPE_DASH = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span><br><span class="line">   * Value returned by &#123;<span class="doctag">@link</span> #inferContentType(String)&#125; for Smooth Streaming manifests.</span><br><span class="line">   */</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TYPE_SS = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span><br><span class="line">   * Value returned by &#123;<span class="doctag">@link</span> #inferContentType(String)&#125; for HLS manifests.</span><br><span class="line">   */</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TYPE_HLS = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span><br><span class="line">   * Value returned by &#123;<span class="doctag">@link</span> #inferContentType(String)&#125; for files other than DASH,</span><br><span class="line">   * HLS or Smooth Streaming manifests.</span><br><span class="line">   */</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TYPE_OTHER = <span class="number">3</span>;</span><br></pre></td></tr></table></figure></p>
+<p>看到这里，直观的反应是这四个参数代表不同的流媒体协议。之前都流媒体的协议并不是很了解，于是开始搜索。找到了部分跟协议相关的知识，比如<a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E9%81%A9%E6%80%A7%E4%B8%B2%E6%B5%81" target="_blank" rel="external">自适性串流</a>。阅读后对流媒体协议有了初步的了解，但感觉还是跟给出的四个类型对不上。终于注意到 inferContentType(String) 这个方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">   * Makes a best guess to infer the type from a file name.</span><br><span class="line">   *</span><br><span class="line">   * <span class="doctag">@param</span> fileName Name of the file. It can include the path of the file.</span><br><span class="line">   * <span class="doctag">@return</span> One of &#123;<span class="doctag">@link</span> #TYPE_DASH&#125;, &#123;<span class="doctag">@link</span> #TYPE_SS&#125;, &#123;<span class="doctag">@link</span> #TYPE_HLS&#125; or</span><br><span class="line">   * &#123;<span class="doctag">@link</span> #TYPE_OTHER&#125;.</span><br><span class="line">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">inferContentType</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (fileName == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> TYPE_OTHER;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (fileName.endsWith(<span class="string">".mpd"</span>)) &#123;</span><br><span class="line">      <span class="keyword">return</span> TYPE_DASH;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (fileName.endsWith(<span class="string">".ism"</span>)) &#123;</span><br><span class="line">      <span class="keyword">return</span> TYPE_SS;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (fileName.endsWith(<span class="string">".m3u8"</span>)) &#123;</span><br><span class="line">      <span class="keyword">return</span> TYPE_HLS;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> TYPE_OTHER;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>查看inferContentType的调用会发现，在传入的Sample没有设置类型的时候，会调用该方法检测Uri的后缀，然后根据后缀进行如上分类，并不是代表某一个协议的意思。我用一个MP4格式的本地视频，以TYPE_SS的类型传入，发现也是能播放的。猜测这个类型参数可能在播放时会进行某些优化。只好在接下来的学习中再去解决自己的疑惑了。</p>
 
       
     </div>
@@ -391,7 +379,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/IPC机制/" rel="tag">#IPC机制</a>
+            <a href="/tags/Android、ExoPlayer/" rel="tag">#Android、ExoPlayer</a>
           
         </div>
       
@@ -400,13 +388,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/07/04/2016-7-4/" rel="next" title="Git 学习笔记（二）">
+                <i class="fa fa-chevron-left"></i> Git 学习笔记（二）
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/21/viewpager-image-display/" rel="prev" title="使用ViewPager + RadioGroup实现图片轮播等图片展示功能">
-                使用ViewPager + RadioGroup实现图片轮播等图片展示功能 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -421,10 +409,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/05/18/my-new-post/"
-     data-title="Android序列化 Parcelable与Serializable"
+        <div class="ds-share flat" data-thread-key="2016/07/09/2016-7-9/"
+     data-title="ExoPlayer Demo 媒体类型参数"
      data-content=""
-     data-url="http://artharyoung.github.io/2016/05/18/my-new-post/">
+     data-url="http://artharyoung.github.io/2016/07/09/2016-7-9/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -451,8 +439,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/18/my-new-post/"
-           data-title="Android序列化 Parcelable与Serializable" data-url="http://artharyoung.github.io/2016/05/18/my-new-post/">
+      <div class="ds-thread" data-thread-key="2016/07/09/2016-7-9/"
+           data-title="ExoPlayer Demo 媒体类型参数" data-url="http://artharyoung.github.io/2016/07/09/2016-7-9/">
       </div>
     
   </div>
@@ -563,7 +551,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用："><span class="nav-number">1.</span> <span class="nav-text">作用：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优点："><span class="nav-number">2.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序列化方法："><span class="nav-number">3.</span> <span class="nav-text">序列化方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#差异比较："><span class="nav-number">4.</span> <span class="nav-text">差异比较：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法："><span class="nav-number">5.</span> <span class="nav-text">使用方法：</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
