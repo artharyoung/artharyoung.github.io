@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next pisces use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -84,7 +84,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 学习笔记（一）">
 <meta property="og:url" content="http://artharyoung.github.io/2016/07/02/2016-7-2/index.html">
-<meta property="og:site_name" content="artharyoung's blog">
+<meta property="og:site_name" content="OtakuPoi">
 <meta property="og:description" content="话说使用Git也有三个多月了，之前一直在用SVN管理代码。重复的敲了这么久的commit&amp;amp;add指令，其实并没有真正理解其中的含义，系统的学习和整理一些知识，才能构建自己的知识体系。于是找来官方的文档，打算好好看一下。其实相关的学习在一周前已经完成了，一直没有整理出来。本篇的知识主要来自Pro Git的前两章，”分支”我打算单独记一篇，毕竟是Git的杀手锏。">
 <meta property="og:image" content="http://artharyoung.github.io/images/2016-7-2.png">
 <meta property="og:updated_time" content="2016-07-02T07:30:00.680Z">
@@ -98,18 +98,18 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: undefined,
       author: '博主'
     }
   };
 </script>
 
-  <title> Git 学习笔记（一） | artharyoung's blog </title>
+  <title> Git 学习笔记（一） | OtakuPoi </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -132,12 +132,6 @@
 
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
-
-	<!----------- add Fork me on Github ------------>
-    
-    <a href="https://github.com/artharyoung"><img style="position: absolute; top: 500; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a>
-    
-    <!----------- add Fork me on Github ------------>   
 	
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
@@ -146,7 +140,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">artharyoung's blog</span>
+      <span class="site-title">OtakuPoi</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -318,13 +312,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/02/2016-7-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/02/2016-7-2/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -457,25 +444,6 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/07/02/2016-7-2/"
-     data-title="Git 学习笔记（一）"
-     data-content=""
-     data-url="http://artharyoung.github.io/2016/07/02/2016-7-2/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
@@ -486,10 +454,6 @@
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/07/02/2016-7-2/"
-           data-title="Git 学习笔记（一）" data-url="http://artharyoung.github.io/2016/07/02/2016-7-2/">
-      </div>
     
   </div>
 
@@ -528,7 +492,7 @@
                src="/images/avatar.png"
                alt="artharyoung" />
           <p class="site-author-name" itemprop="name">artharyoung</p>
-          <p class="site-description motion-element" itemprop="description">Talk is Cheap, Show Me the Code</p>
+          <p class="site-description motion-element" itemprop="description">Using technologies that haven't been invented in order to solve problems we don't even know problems yet.</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -573,11 +537,11 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com/mysunnyhope" target="_blank" title="微博">
+                <a href="https://twitter.com/artharyoung" target="_blank" title="Twitter">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-twitter"></i>
                   
-                  微博
+                  Twitter
                 </a>
               </span>
             
@@ -617,8 +581,8 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -632,7 +596,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -698,6 +662,13 @@
   
   
 
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
@@ -713,28 +684,9 @@
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"artharyoung"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-  
 
 
+  
 
 
 
