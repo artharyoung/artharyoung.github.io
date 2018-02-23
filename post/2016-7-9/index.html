@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ExoPlayer Demo 媒体类型参数 - OtakuPoi</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="artharyoung" />
+  <meta name="description" content="ExoPlayer是Google开源的播放器，可以算是MediaPlayer的扩展版本吧,因为跟一些小伙伴发起了一个播放器开发的项目，所以接下来打算把学到的东西都写下来。一来，可以方便和其他小伙伴交流，二来，也方便以后自己复习。碍于自己Android知识水平有限，如有错误还请大家多多指教。 - 注：ExoPlayer版本 r1.5.9，单独分离出来的ExoPlayerDemo " />
+
+  <meta name="keywords" content="Hugo, artharyoung, otakupoi" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.34" />
+
+
+<link rel="canonical" href="http://www.otakupoi.com/post/2016-7-9/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.0.1" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="ExoPlayer Demo 媒体类型参数" />
+<meta property="og:description" content="ExoPlayer是Google开源的播放器，可以算是MediaPlayer的扩展版本吧,因为跟一些小伙伴发起了一个播放器开发的项目，所以接下来打算把学到的东西都写下来。一来，可以方便和其他小伙伴交流，二来，也方便以后自己复习。碍于自己Android知识水平有限，如有错误还请大家多多指教。
+- 注：ExoPlayer版本 r1.5.9，单独分离出来的ExoPlayerDemo
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.otakupoi.com/post/2016-7-9/" />
+
+
+
+<meta property="article:published_time" content="2016-07-09T19:37:59&#43;00:00"/>
+
+<meta property="article:modified_time" content="2016-07-09T19:37:59&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="ExoPlayer Demo 媒体类型参数">
+<meta itemprop="description" content="ExoPlayer是Google开源的播放器，可以算是MediaPlayer的扩展版本吧,因为跟一些小伙伴发起了一个播放器开发的项目，所以接下来打算把学到的东西都写下来。一来，可以方便和其他小伙伴交流，二来，也方便以后自己复习。碍于自己Android知识水平有限，如有错误还请大家多多指教。
+- 注：ExoPlayer版本 r1.5.9，单独分离出来的ExoPlayerDemo
+">
+
+
+<meta itemprop="datePublished" content="2016-07-09T19:37:59&#43;00:00" />
+<meta itemprop="dateModified" content="2016-07-09T19:37:59&#43;00:00" />
+<meta itemprop="wordCount" content="873">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="ExoPlayer Demo 媒体类型参数"/>
+<meta name="twitter:description" content="ExoPlayer是Google开源的播放器，可以算是MediaPlayer的扩展版本吧,因为跟一些小伙伴发起了一个播放器开发的项目，所以接下来打算把学到的东西都写下来。一来，可以方便和其他小伙伴交流，二来，也方便以后自己复习。碍于自己Android知识水平有限，如有错误还请大家多多指教。
+- 注：ExoPlayer版本 r1.5.9，单独分离出来的ExoPlayerDemo
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">OtakuPoi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">OtakuPoi</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">ExoPlayer Demo 媒体类型参数</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-07-09 </span>
+        
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p><a href="https://github.com/google/ExoPlayer">ExoPlayer</a>是Google开源的播放器，可以算是<a href="https://developer.android.com/reference/android/media/MediaPlayer.html">MediaPlayer</a>的扩展版本吧,因为跟一些小伙伴发起了一个播放器开发的项目，所以接下来打算把学到的东西都写下来。一来，可以方便和其他小伙伴交流，二来，也方便以后自己复习。碍于自己Android知识水平有限，如有错误还请大家多多指教。
+- 注：ExoPlayer版本 r1.5.9，单独分离出来的<a href="https://github.com/artharyoung/ExoPlayerDemo">ExoPlayerDemo</a>
+</p>
+
+<p>在Demo中可以看到，流媒体播放的请求都是以Intent的形式，封装一个<a href="https://github.com/artharyoung/ExoPlayerDemo/blob/master/app/src/main/java/com/artharyoung/exoplayerdemo/Samples.java">Sample</a>去拉起一个播放页面的Activity。</p>
+
+<pre><code class="language-java">Intent mpdIntent = new Intent(mContext, PlayerActivity.class)
+                .setData(Uri.parse(sample.uri))
+                .putExtra(PlayerActivity.CONTENT_ID_EXTRA, sample.contentId)
+                .putExtra(PlayerActivity.CONTENT_TYPE_EXTRA, sample.type)
+                .putExtra(PlayerActivity.PROVIDER_EXTRA, sample.provider);
+        mContext.startActivity(mpdIntent);
+</code></pre>
+
+<p>而在Sample的构造方法中，需要传入媒体的类型：</p>
+
+<pre><code class="language-java">public static final Sample[] CNTV_DASH = new Sample[]{
+            new Sample(&quot;CCTV-1HD&quot;,
+            &quot;http://vod.cdn4.cmvideo.cn/envivo_v/HD/cctv1/450/01.m3u8&quot;, Util.TYPE_HLS),
+    };
+</code></pre>
+
+<p>同时在PlayerActivity中可以看到，根据不同的流媒体类型会回调不同的接口：</p>
+
+<pre><code class="language-java">private RendererBuilder getRendererBuilder() {
+        String userAgent = Util.getUserAgent(this, &quot;PlayerActivity&quot;);
+        switch (contentType) {
+            case Util.TYPE_SS:
+                return new SmoothStreamingRendererBuilder(this, userAgent,
+                        contentUri.toString(),
+                        new SmoothStreamingTestMediaDrmCallback());
+            case Util.TYPE_DASH:
+                return new DashRendererBuilder(this, userAgent, contentUri.toString(),
+                        new WidevineTestMediaDrmCallback(contentId, provider));
+            case Util.TYPE_HLS:
+                return new HlsRendererBuilder(this, userAgent, contentUri.toString());
+            case Util.TYPE_OTHER:
+                return new ExtractorRendererBuilder(this, userAgent, contentUri);
+            default:
+                throw new IllegalStateException(&quot;Unsupported type: &quot; + contentType);
+        }
+    }
+</code></pre>
+
+<p>接着前面的线索，查找Util类中的类型参数，如下：</p>
+
+<pre><code class="language-java">/**
+   * Value returned by {@link #inferContentType(String)} for DASH manifests.
+   */
+  public static final int TYPE_DASH = 0;
+
+  /**
+   * Value returned by {@link #inferContentType(String)} for Smooth Streaming manifests.
+   */
+  public static final int TYPE_SS = 1;
+
+  /**
+   * Value returned by {@link #inferContentType(String)} for HLS manifests.
+   */
+  public static final int TYPE_HLS = 2;
+
+  /**
+   * Value returned by {@link #inferContentType(String)} for files other than DASH,
+   * HLS or Smooth Streaming manifests.
+   */
+  public static final int TYPE_OTHER = 3;
+</code></pre>
+
+<p>看到这里，直观的反应是这四个参数代表不同的流媒体协议。之前都流媒体的协议并不是很了解，于是开始搜索。找到了部分跟协议相关的知识，比如<a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E9%81%A9%E6%80%A7%E4%B8%B2%E6%B5%81">自适性串流</a>。阅读后对流媒体协议有了初步的了解，但感觉还是跟给出的四个类型对不上。终于注意到 inferContentType(String) 这个方法：</p>
+
+<pre><code class="language-java">/**
+   * Makes a best guess to infer the type from a file name.
+   *
+   * @param fileName Name of the file. It can include the path of the file.
+   * @return One of {@link #TYPE_DASH}, {@link #TYPE_SS}, {@link #TYPE_HLS} or
+   * {@link #TYPE_OTHER}.
+   */
+  public static int inferContentType(String fileName) {
+    if (fileName == null) {
+      return TYPE_OTHER;
+    } else if (fileName.endsWith(&quot;.mpd&quot;)) {
+      return TYPE_DASH;
+    } else if (fileName.endsWith(&quot;.ism&quot;)) {
+      return TYPE_SS;
+    } else if (fileName.endsWith(&quot;.m3u8&quot;)) {
+      return TYPE_HLS;
+    } else {
+      return TYPE_OTHER;
+    }
+  }
+</code></pre>
+
+<p>查看inferContentType的调用会发现，在传入的Sample没有设置类型的时候，会调用该方法检测Uri的后缀，然后根据后缀进行如上分类，并不是代表某一个协议的意思。我用一个MP4格式的本地视频，以TYPE_SS的类型传入，发现也是能播放的。猜测这个类型参数可能在播放时会进行某些优化。只好在接下来的学习中再去解决自己的疑惑了。</p>
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">artharyoung</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2016-07-09</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2016-8-26/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ExoPlayer 中 MediaController 的定制</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2016-7-4/">
+            <span class="next-text nav-default">Git 学习笔记（二）</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+  
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:artharyoungcn@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://www.twitter.com/artharyoung" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://www.github.com/artharyoung" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.otakupoi.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2016 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">artharyoung</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=3.0.1"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

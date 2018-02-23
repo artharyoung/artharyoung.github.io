@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用ViewPager &#43; RadioGroup实现图片轮播等图片展示功能 - OtakuPoi</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="artharyoung" />
+  <meta name="description" content="源代码 - tips:对于上面的两种效果，参考过网络上许多实现方法，大多数都是通过自定义控件的各项属性等来实现。 个人还是倾向于使用android" />
+
+  <meta name="keywords" content="Hugo, artharyoung, otakupoi" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.34" />
+
+
+<link rel="canonical" href="http://www.otakupoi.com/post/viewpager-image-display/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.0.1" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="使用ViewPager &#43; RadioGroup实现图片轮播等图片展示功能" />
+<meta property="og:description" content="源代码 - tips:对于上面的两种效果，参考过网络上许多实现方法，大多数都是通过自定义控件的各项属性等来实现。 个人还是倾向于使用android" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.otakupoi.com/post/viewpager-image-display/" />
+
+
+
+<meta property="article:published_time" content="2016-05-21T16:43:55&#43;00:00"/>
+
+<meta property="article:modified_time" content="2016-05-21T16:43:55&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="使用ViewPager &#43; RadioGroup实现图片轮播等图片展示功能">
+<meta itemprop="description" content="源代码 - tips:对于上面的两种效果，参考过网络上许多实现方法，大多数都是通过自定义控件的各项属性等来实现。 个人还是倾向于使用android">
+
+
+<meta itemprop="datePublished" content="2016-05-21T16:43:55&#43;00:00" />
+<meta itemprop="dateModified" content="2016-05-21T16:43:55&#43;00:00" />
+<meta itemprop="wordCount" content="829">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="使用ViewPager &#43; RadioGroup实现图片轮播等图片展示功能"/>
+<meta name="twitter:description" content="源代码 - tips:对于上面的两种效果，参考过网络上许多实现方法，大多数都是通过自定义控件的各项属性等来实现。 个人还是倾向于使用android"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">OtakuPoi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">OtakuPoi</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用ViewPager &#43; RadioGroup实现图片轮播等图片展示功能</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-05-21 </span>
+        
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#知识点小结">知识点小结：</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p><a href="https://github.com/artharyoung/ViewPagerImageDisplay" title="源代码">源代码</a>
+- tips:对于上面的两种效果，参考过网络上许多实现方法，大多数都是通过自定义控件的各项属性等来实现。
+个人还是倾向于使用android本身提供的控件来实现这两种效果。</p>
+
+<h1 id="知识点小结">知识点小结：</h1>
+
+<ul>
+<li>通过复写ViewPagerAdapter的getPageWidth(int position)方法来实现多个item的展示：
+<code>java
+@Override
+public float getPageWidth(int position) {
+return 1/3f;
+}
+</code></li>
+<li>通过获取屏幕参数来动态设置ViewPager的高度来适配phone、pad等不同分辨率的显示效果。（ViewPager无法设置高度wrap_content，只能指定固定高度）
+```java
+//获取屏幕像素相关信息
+DisplayMetrics dm = new DisplayMetrics();
+getWindowManager().getDefaultDisplay().getMetrics(dm);</li>
+</ul>
+
+<p>//根据屏幕信息设置ViewPager容器的宽高,为了适配pad和手机
+mViewPager.setLayoutParams(new LinearLayout.LayoutParams(dm.widthPixels, dm.heightPixels * <sup>1</sup>&frasl;<sub>3</sub>));</p>
+
+<pre><code>tips:这里注意使用的LayoutParams为ViewPager父布局的属性，比如：父布局为LinearLayout则使用LinearLayout.LayoutParams
+
+- 通过RadioGroup动态添加RadioButton来实现切换图片时“点”的切换。这里有两个小细节需要注意：
+1、动态添加的RadioButton需要调用setId(int i)手动设置id,否则setOnCheckedChangeListener的时候找不到子View。
+2、通过setButtonDrawable设置的图片不能居中，始终在View的左边，这是RadioButton源码中onDraw设定的，看到大多数的解决方案都是复写onDraw其实是LayoutParams设置不对，应该使用RadioGroup.LayoutParams然后setMargins实现居中。[stackoverflow](http://stackoverflow.com/questions/7905885/margin-set-programmatically-on-radiobutton-not-applied?answertab=active#tab-top &quot;stackoverflow&quot;)
+```java
+RadioButton tempButton = new RadioButton(this);
+tempButton.setButtonDrawable(R.drawable.game_banner_dot_normal);
+
+RadioGroup.LayoutParams childParams = new RadioGroup.LayoutParams(
+            RadioGroup.LayoutParams.WRAP_CONTENT,
+            RadioGroup.LayoutParams.WRAP_CONTENT);
+childParams.gravity = Gravity.CENTER_HORIZONTAL;
+childParams.setMargins((int)getResources().getDimension(R.dimen.ui_layout_margin),0,
+                    (int)getResources().getDimension(R.dimen.ui_layout_margin),0);
+tempButton.setId(i);
+
+mRadioGroup.addView(tempButton,childParams);
+</code></pre>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">artharyoung</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2016-05-21</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2016-6-4/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">APP分享功能的实现</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/my-new-post/">
+            <span class="next-text nav-default">Android序列化 Parcelable与Serializable</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+  
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:artharyoungcn@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://www.twitter.com/artharyoung" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://www.github.com/artharyoung" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.otakupoi.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2016 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">artharyoung</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=3.0.1"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

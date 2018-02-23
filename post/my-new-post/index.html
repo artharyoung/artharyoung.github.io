@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Android序列化 Parcelable与Serializable - OtakuPoi</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="artharyoung" />
+  <meta name="description" content="作用： 序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。
+优点：  永久性的保存对象，保存对象的字节序列到本地文件中； 通过序列化对象在网络中传递对象； 通过序列化在进程中传递对象； " />
+
+  <meta name="keywords" content="Hugo, artharyoung, otakupoi" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.34" />
+
+
+<link rel="canonical" href="http://www.otakupoi.com/post/my-new-post/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.0.1" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Android序列化 Parcelable与Serializable" />
+<meta property="og:description" content="作用：
+
+序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。
+
+优点：
+
+
+永久性的保存对象，保存对象的字节序列到本地文件中；
+通过序列化对象在网络中传递对象；
+
+通过序列化在进程中传递对象；
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.otakupoi.com/post/my-new-post/" />
+
+
+
+<meta property="article:published_time" content="2016-05-18T22:27:20&#43;00:00"/>
+
+<meta property="article:modified_time" content="2016-05-18T22:27:20&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Android序列化 Parcelable与Serializable">
+<meta itemprop="description" content="作用：
+
+序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。
+
+优点：
+
+
+永久性的保存对象，保存对象的字节序列到本地文件中；
+通过序列化对象在网络中传递对象；
+
+通过序列化在进程中传递对象；
+">
+
+
+<meta itemprop="datePublished" content="2016-05-18T22:27:20&#43;00:00" />
+<meta itemprop="dateModified" content="2016-05-18T22:27:20&#43;00:00" />
+<meta itemprop="wordCount" content="1011">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Android序列化 Parcelable与Serializable"/>
+<meta name="twitter:description" content="作用：
+
+序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。
+
+优点：
+
+
+永久性的保存对象，保存对象的字节序列到本地文件中；
+通过序列化对象在网络中传递对象；
+
+通过序列化在进程中传递对象；
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">OtakuPoi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">OtakuPoi</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Android序列化 Parcelable与Serializable</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-05-18 </span>
+        
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#作用">作用：</a></li>
+<li><a href="#优点">优点：</a></li>
+<li><a href="#序列化方法">序列化方法：</a></li>
+<li><a href="#差异比较">差异比较：</a></li>
+<li><a href="#使用方法">使用方法：</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="作用">作用：</h2>
+
+<p>序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。</p>
+
+<h2 id="优点">优点：</h2>
+
+<ul>
+<li>永久性的保存对象，保存对象的字节序列到本地文件中；</li>
+<li>通过序列化对象在网络中传递对象；</li>
+
+<li><p>通过序列化在进程中传递对象；
+</p>
+
+<h2 id="序列化方法">序列化方法：</h2></li>
+
+<li><p>实现Serializable接口，JAVA提供的一个序列化接口。它是一个空接口，为对象提供标准的序列化与反序列化操作。</p></li>
+
+<li><p>实现Parcelable接口，Google为Android序列化提供的一个接口，只要实现这个接口，一个类的对象就可以实现序列化并可以通过Intent和Binder传递。</p></li>
+</ul>
+
+<h2 id="差异比较">差异比较：</h2>
+
+<ul>
+<li>在使用内存时，Parcelable比Serializable性能高。</li>
+<li>Serializable在序列化时会产生大量的临时变量，引起频繁的GC。</li>
+<li>Parcelable不能使用在要将数据储存在磁盘上的情况，因为Parcelable不能很好的保证数据的持续性，在外界有变化的情况下；</li>
+</ul>
+
+<h2 id="使用方法">使用方法：</h2>
+
+<p>Serializable:
+在需要序列化的类中实现Sericalizable接口，并添加serialVersionUID。
+tips:File=&gt;Settings&hellip;=&gt;Inspections=&gt;Serialization issues=&gt;Serializable class without &lsquo;serialVersionUID&rsquo;勾选上。Alt+ Enter自动生成serialVersionUID。</p>
+
+<pre><code class="language-java">        //序列化
+        UserBean userBean = new UserBean();
+        userBean.setAge(24);
+        userBean.setName(&quot;young&quot;);
+        
+        File file = new File(&quot;path&quot;);
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+            out.writeObject(userBean);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //反序列化
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+            UserBean user = (UserBean) in.readObject();
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }catch (ClassNotFoundException e1){
+            
+        }
+</code></pre>
+
+<p>Parcelable：
+在需要序列化的类中实现Parcelable接口。通过writeToParcel将你的对象映射成Parcel对象，再通过createFromParcel将parcel映射成你的对象，也可以将Parcel看成是一个流，通过writeToParcel把对象写到流里面，在通过createFromParcel把对象从流里面读取对象，只不过这个过程需要自己来实现，因此写的顺序和读的顺序必须一致；
+tips:Ctrl + j 选择自动生成Parcelable相关代码，手动补全相关方法。</p>
+
+<pre><code class="language-java">import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
+public class UserBean implements Parcelable{
+
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    protected UserBean(Parcel in) {
+        //顺序与writeToParcel中保持一致，否则反序列化时会错位
+        name = in.readString();
+        age = in.readInt();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeInt(age);
+    }
+
+    public static final Creator&lt;UserBean&gt; CREATOR = new Creator&lt;UserBean&gt;() {
+        @Override
+        public UserBean createFromParcel(Parcel in) {
+            return new UserBean(in);
+        }
+
+        @Override
+        public UserBean[] newArray(int size) {
+            return new UserBean[size];
+        }
+    };
+}
+</code></pre>
+
+<p>使用：</p>
+
+<pre><code class="language-java">//发送
+Intent intent = new Intent();
+intent.putExtra(&quot;parcelable&quot;,userBean);
+//接收
+intent.getParcelableExtra(&quot;parcelable&quot;);
+</code></pre>
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">artharyoung</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2016-05-18</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/viewpager-image-display/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用ViewPager &#43; RadioGroup实现图片轮播等图片展示功能</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+  
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:artharyoungcn@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://www.twitter.com/artharyoung" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://www.github.com/artharyoung" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.otakupoi.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2016 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">artharyoung</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=3.0.1"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

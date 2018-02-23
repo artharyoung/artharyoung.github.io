@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>APP Bar 的使用 - OtakuPoi</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="artharyoung" />
+  <meta name="description" content="最近在自己的项目MDVideo中添加了半透明的 StatusBar 效果，索性把官方文档中关于这一部分的讲解总结一下，加强一下这一块的记忆。之前做了一年半的 TV 应用开发，由于交互上只处理 OnKey 的事件，所以应用基本都是采用 FullScreen 样式。并且由于当时使用的 Eclipse对 support V7 包的支持完全令人无语，导致这一块细节的了解还是比较陌生的。
+Google 在 Android 5.0 引入 Material Design，同时很多 ActionBar 的方法被弃用了，通过在 Appcombat V7 包中添加 ToolBar 来替代原有的 ActionBar。由于是引用 Library, 这在版本兼容上避免了很多问题。ToolBar 之前，在 Android 3.0开始，ActionBar包含于 Theme.Holo 主题中，本篇会引用 ActionBar 的一些介绍,以便于了解 ActionBar 在 APP 中的作用，ToolBar 的设计理念与它是一样的，但不赘述怎么使用，因为已经过时了。
+
+" />
+
+  <meta name="keywords" content="Hugo, artharyoung, otakupoi" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.34" />
+
+
+<link rel="canonical" href="http://www.otakupoi.com/post/2016-6-16/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.0.1" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="APP Bar 的使用" />
+<meta property="og:description" content="最近在自己的项目MDVideo中添加了半透明的 StatusBar 效果，索性把官方文档中关于这一部分的讲解总结一下，加强一下这一块的记忆。之前做了一年半的 TV 应用开发，由于交互上只处理 OnKey 的事件，所以应用基本都是采用 FullScreen 样式。并且由于当时使用的 Eclipse对 support V7 包的支持完全令人无语，导致这一块细节的了解还是比较陌生的。
+
+Google 在 Android 5.0 引入 Material Design，同时很多 ActionBar 的方法被弃用了，通过在 Appcombat V7 包中添加 ToolBar 来替代原有的 ActionBar。由于是引用 Library, 这在版本兼容上避免了很多问题。ToolBar 之前，在 Android 3.0开始，ActionBar包含于 Theme.Holo 主题中，本篇会引用 ActionBar 的一些介绍,以便于了解 ActionBar 在 APP 中的作用，ToolBar 的设计理念与它是一样的，但不赘述怎么使用，因为已经过时了。
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.otakupoi.com/post/2016-6-16/" />
+
+
+
+<meta property="article:published_time" content="2016-06-16T22:51:52&#43;00:00"/>
+
+<meta property="article:modified_time" content="2016-06-16T22:51:52&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="APP Bar 的使用">
+<meta itemprop="description" content="最近在自己的项目MDVideo中添加了半透明的 StatusBar 效果，索性把官方文档中关于这一部分的讲解总结一下，加强一下这一块的记忆。之前做了一年半的 TV 应用开发，由于交互上只处理 OnKey 的事件，所以应用基本都是采用 FullScreen 样式。并且由于当时使用的 Eclipse对 support V7 包的支持完全令人无语，导致这一块细节的了解还是比较陌生的。
+
+Google 在 Android 5.0 引入 Material Design，同时很多 ActionBar 的方法被弃用了，通过在 Appcombat V7 包中添加 ToolBar 来替代原有的 ActionBar。由于是引用 Library, 这在版本兼容上避免了很多问题。ToolBar 之前，在 Android 3.0开始，ActionBar包含于 Theme.Holo 主题中，本篇会引用 ActionBar 的一些介绍,以便于了解 ActionBar 在 APP 中的作用，ToolBar 的设计理念与它是一样的，但不赘述怎么使用，因为已经过时了。
+
+">
+
+
+<meta itemprop="datePublished" content="2016-06-16T22:51:52&#43;00:00" />
+<meta itemprop="dateModified" content="2016-06-16T22:51:52&#43;00:00" />
+<meta itemprop="wordCount" content="1764">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="APP Bar 的使用"/>
+<meta name="twitter:description" content="最近在自己的项目MDVideo中添加了半透明的 StatusBar 效果，索性把官方文档中关于这一部分的讲解总结一下，加强一下这一块的记忆。之前做了一年半的 TV 应用开发，由于交互上只处理 OnKey 的事件，所以应用基本都是采用 FullScreen 样式。并且由于当时使用的 Eclipse对 support V7 包的支持完全令人无语，导致这一块细节的了解还是比较陌生的。
+
+Google 在 Android 5.0 引入 Material Design，同时很多 ActionBar 的方法被弃用了，通过在 Appcombat V7 包中添加 ToolBar 来替代原有的 ActionBar。由于是引用 Library, 这在版本兼容上避免了很多问题。ToolBar 之前，在 Android 3.0开始，ActionBar包含于 Theme.Holo 主题中，本篇会引用 ActionBar 的一些介绍,以便于了解 ActionBar 在 APP 中的作用，ToolBar 的设计理念与它是一样的，但不赘述怎么使用，因为已经过时了。
+
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">OtakuPoi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">OtakuPoi</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">APP Bar 的使用</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-06-16 </span>
+        
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#添加toolbar">添加ToolBar</a></li>
+<li><a href="#在-toolbar-中添加item">在 ToolBar 中添加item</a></li>
+<li><a href="#添加toolbar的事件响应">添加ToolBar的事件响应</a></li>
+<li><a href="#为下级-activity-添加向上按钮">为下级 Activity 添加向上按钮</a></li>
+<li><a href="#添加搜索与分享">添加搜索与分享</a></li>
+<li><a href="#沉浸式状态栏的实现">沉浸式状态栏的实现</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>最近在自己的项目<a href="https://github.com/AndroidTips/MDVideo">MDVideo</a>中添加了半透明的 StatusBar 效果，索性把官方文档中关于这一部分的讲解总结一下，加强一下这一块的记忆。之前做了一年半的 TV 应用开发，由于交互上只处理 OnKey 的事件，所以应用基本都是采用 FullScreen 样式。并且由于当时使用的 Eclipse对 support V7 包的支持完全令人无语，导致这一块细节的了解还是比较陌生的。</p>
+
+<p>Google 在 Android 5.0 引入 Material Design，同时很多 ActionBar 的方法被弃用了，通过在 Appcombat V7 包中添加 ToolBar 来替代原有的 ActionBar。由于是引用 Library, 这在版本兼容上避免了很多问题。ToolBar 之前，在 Android 3.0开始，ActionBar包含于 Theme.Holo 主题中，本篇会引用 ActionBar 的一些介绍,以便于了解 ActionBar 在 APP 中的作用，ToolBar 的设计理念与它是一样的，但不赘述怎么使用，因为已经过时了。</p>
+
+<p></p>
+
+<h2 id="添加toolbar">添加ToolBar</h2>
+
+<blockquote>
+<p>Action bar 最基本的形式，就是为 Activity 显示标题，并且在标题左边显示一个 app icon。即使在这样简单的形式下，action bar对于所有的 activity 来说是十分有用的。它告知用户他们当前所处的位置，并为你的 app 维护了持续的同一标识。</p>
+</blockquote>
+
+<p>在xml文件中添加ToolBar:</p>
+
+<pre><code class="language-java">&lt;android.support.v7.widget.Toolbar
+            android:id=&quot;@+id/toolbar&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:fitsSystemWindows=&quot;true&quot;
+            android:background=&quot;?attr/colorPrimary&quot;
+            app:popupTheme=&quot;@style/AppTheme.PopupOverlay&quot;/&gt;
+</code></pre>
+
+<p>然后在AppCompatActivity里设置：</p>
+
+<pre><code class="language-java">Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+</code></pre>
+
+<p>tips：这里使用的style都是Theme.AppCompat主题族。</p>
+
+<h2 id="在-toolbar-中添加item">在 ToolBar 中添加item</h2>
+
+<blockquote>
+<p>Action bar 允许我们为当前环境下最重要的操作添加按钮。那些直接出现在 action bar 中的 icon 和/或文本被称作action buttons(操作按钮)。安排不下的或不足够重要的操作被隐藏在 action overflow 中。</p>
+</blockquote>
+
+<p>一个有search操作按钮和 action overflow 的 action bar，在 action overflow 里能展现额外的操作。
+所有的操作按钮和 action overflow 中其他可用的条目都被定义在 menu资源 的 XML 文件中。通过在项目的 res/menu 目录中新增一个 XML 文件来为 ToolBar 添加操作。</p>
+
+<pre><code class="language-java">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+      xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;
+
+    &lt;item
+        android:id=&quot;@+id/player_scale_4_3&quot;
+        android:title=&quot;@string/player_scale_4_3&quot;/&gt;
+    &lt;item
+        android:id=&quot;@+id/player_scale_16_9&quot;
+        android:title=&quot;@string/player_scale_16_9&quot;/&gt;
+    &lt;item
+        android:id=&quot;@+id/player_scale_default&quot;
+        android:title=&quot;@string/player_scale_default&quot;/&gt;
+    &lt;item
+        android:id=&quot;@+id/player_Rotation&quot;
+        android:icon=&quot;@drawable/ic_rotate_right&quot;
+        android:title=&quot;@string/player_Rotation&quot;
+        app:showAsAction=&quot;always&quot;/&gt;
+&lt;/menu&gt;
+</code></pre>
+
+<p>tips：这里的 showAsAction 属性决定了该 item 是否在 ToolBar 上单独显示，或是只在 action overflow 中显示。因为使用的ToolBar来自 V7 包，这里需要添加自定义命名空间。</p>
+
+<pre><code class="language-java">xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+
+app:showAsAction=&quot;always&quot;
+</code></pre>
+
+<p>在 Activity 的 onCreateOptionsMenu() 方法回调中 inflate 菜单资源从而获取 Menu 对象：</p>
+
+<pre><code class="language-java">@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+</code></pre>
+
+<h2 id="添加toolbar的事件响应">添加ToolBar的事件响应</h2>
+
+<blockquote>
+<p>当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中onOptionsItemSelected()的回调方法。在该方法的实现里面调用MenuItem的getItemId()来判断哪个条目被按下</p>
+</blockquote>
+
+<pre><code class="language-java">@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.player_scale_4_3:
+                mVideoView.setDisplayAspectRatio(PLVideoTextureView.ASPECT_RATIO_4_3);
+                break;
+            case R.id.player_scale_16_9:
+                mVideoView.setDisplayAspectRatio(PLVideoTextureView.ASPECT_RATIO_16_9);
+                break;
+            case R.id.player_scale_default:
+                mVideoView.setDisplayAspectRatio(PLVideoTextureView.ASPECT_RATIO_PAVED_PARENT);
+                break;
+
+            case R.id.player_Rotation:
+                mRotation = (mRotation + 90) % 360;
+                mVideoView.setDisplayOrientation(mRotation);
+                break;
+
+            default:
+                mVideoView.setDisplayAspectRatio(PLVideoTextureView.ASPECT_RATIO_PAVED_PARENT);
+                break;
+        }
+
+        //必须super,否则manifest中设置的actionBar返回无效
+        return super.onOptionsItemSelected(item);
+    }
+</code></pre>
+
+<h2 id="为下级-activity-添加向上按钮">为下级 Activity 添加向上按钮</h2>
+
+<p>在不是程序入口的其他所有屏中（activity 不位于主屏时），需要在 action bar 中为用户提供一个导航到逻辑父屏的up button(向上按钮)。</p>
+
+<p>在 manifest 文件中声明父 activity，并在activity中设置：</p>
+
+<pre><code class="language-java"> &lt;activity
+            android:name=&quot;.PlayerModule.PlayerTextureActivity&quot;
+            android:configChanges=&quot;orientation|keyboardHidden|screenSize&quot;
+            android:parentActivityName=&quot;com.artharyoung.mdvideo.MainActivity&quot;
+            android:screenOrientation=&quot;landscape&quot;
+            android:theme=&quot;@style/MyTheme.FullScreen&quot;&gt;
+        &lt;/activity&gt;
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+</code></pre>
+
+<p>tips:在onOptionsItemSelected中不能return true,否则这个返回键会不响应。</p>
+
+<h2 id="添加搜索与分享">添加搜索与分享</h2>
+
+<p>在Menu资源文件中添加item:</p>
+
+<pre><code class="language-java">&lt;item android:id=&quot;@+id/action_search&quot;
+          android:title=&quot;@string/menu_search&quot;
+          android:icon=&quot;@android:drawable/ic_menu_search&quot;
+          app:showAsAction=&quot;ifRoom|collapseActionView&quot;
+          app:actionViewClass=&quot;android.support.v7.widget.SearchView&quot; /&gt;
+</code></pre>
+
+<p>在 onCreateOptionsMenu 获取SearchView的对象并设置监听事件：</p>
+
+<pre><code class="language-java">MenuItem searchItem = menu.findItem(R.id.action_search);
+SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+ // Configure the search info and add any event listeners...
+</code></pre>
+
+<p>关于分享的设置，请参考另一个帖子<a href="http://artharyoung.github.io/2016/06/04/2016-6-4/">《APP分享功能的实现》</a></p>
+
+<h2 id="沉浸式状态栏的实现">沉浸式状态栏的实现</h2>
+
+<p>APP的状态栏随主题变化，在Android 4.4开始引进，在4.4之前是不能自定义状态栏颜色的。实现主要有三个要点：</p>
+
+<ul>
+<li>ToolBar高度设置为wrap_content</li>
+<li>ToolBar添加属性android:fitsSystemWindows=&ldquo;true&rdquo;</li>
+<li>父布局添加属性android:fitsSystemWindows=&ldquo;true&rdquo;</li>
+</ul>
+
+<p>这样可以达到在android 5.0以上系统中状态栏的半透明，如下：
+{% img /images/20160616220805.jpg %}
+为了兼容API 19的效果，需要在values-v19添加属性：</p>
+
+<pre><code class="language-java"> &lt;!-- API 19 兼容半透明状态栏 --&gt;
+    &lt;style name=&quot;AppTheme&quot; parent=&quot;@style/BaseAppTheme&quot;&gt;
+        &lt;item name=&quot;android:windowTranslucentStatus&quot;&gt;true&lt;/item&gt;
+    &lt;/style&gt;
+</code></pre>
+
+<p>这样，在API 19的机器上状态栏将变为全透明。但是比较坑爹的是，国产手机对系统的更改，使得这样设置并不能达到理想的效果。比如我在小米4 MIUI 7.3的系统上，Android 6.0的机器上状态栏居然全透明了。
+这时候就不能在style里做兼容了，可以在Activity中设置：</p>
+
+<pre><code class="language-java">  private void initStatusBar() {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
+</code></pre>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://developer.android.com/training/appbar/index.html">《Adding the App Bar》</a>
+<a href="http://hukai.me/android-training-course-in-chinese/basics/actionbar/index.html">《添加Action Bar》</a></p>
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">artharyoung</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2016-06-16</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/karel-and-java/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">编程方法学第三课学习笔记</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2016-6-12/">
+            <span class="next-text nav-default">使用Pattern与Matcher进行用户名与手机号校验</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+  
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:artharyoungcn@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://www.twitter.com/artharyoung" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://www.github.com/artharyoung" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.otakupoi.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2016 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">artharyoung</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=3.0.1"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Git 学习笔记（一） - OtakuPoi</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="artharyoung" />
+  <meta name="description" content="话说使用Git也有三个多月了，之前一直在用SVN管理代码。重复的敲了这么久的commit&amp;amp;add指令，其实并没有真正理解其中的含义，系统的学习和整理一些知识，才能构建自己的知识体系。于是找来官方的文档，打算好好看一下。其实相关的学习在一周前已经完成了，一直没有整理出来。本篇的知识主要来自Pro Git的前两章，&amp;rdquo;分支&amp;rdquo;我打算单独记一篇，毕竟是Git的杀手锏。 " />
+
+  <meta name="keywords" content="Hugo, artharyoung, otakupoi" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.34" />
+
+
+<link rel="canonical" href="http://www.otakupoi.com/post/2016-7-2/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.0.1" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Git 学习笔记（一）" />
+<meta property="og:description" content="话说使用Git也有三个多月了，之前一直在用SVN管理代码。重复的敲了这么久的commit&amp;add指令，其实并没有真正理解其中的含义，系统的学习和整理一些知识，才能构建自己的知识体系。于是找来官方的文档，打算好好看一下。其实相关的学习在一周前已经完成了，一直没有整理出来。本篇的知识主要来自Pro Git的前两章，&rdquo;分支&rdquo;我打算单独记一篇，毕竟是Git的杀手锏。
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.otakupoi.com/post/2016-7-2/" />
+
+
+
+<meta property="article:published_time" content="2016-07-02T14:49:43&#43;00:00"/>
+
+<meta property="article:modified_time" content="2016-07-02T14:49:43&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Git 学习笔记（一）">
+<meta itemprop="description" content="话说使用Git也有三个多月了，之前一直在用SVN管理代码。重复的敲了这么久的commit&amp;add指令，其实并没有真正理解其中的含义，系统的学习和整理一些知识，才能构建自己的知识体系。于是找来官方的文档，打算好好看一下。其实相关的学习在一周前已经完成了，一直没有整理出来。本篇的知识主要来自Pro Git的前两章，&rdquo;分支&rdquo;我打算单独记一篇，毕竟是Git的杀手锏。
+">
+
+
+<meta itemprop="datePublished" content="2016-07-02T14:49:43&#43;00:00" />
+<meta itemprop="dateModified" content="2016-07-02T14:49:43&#43;00:00" />
+<meta itemprop="wordCount" content="2420">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Git 学习笔记（一）"/>
+<meta name="twitter:description" content="话说使用Git也有三个多月了，之前一直在用SVN管理代码。重复的敲了这么久的commit&amp;add指令，其实并没有真正理解其中的含义，系统的学习和整理一些知识，才能构建自己的知识体系。于是找来官方的文档，打算好好看一下。其实相关的学习在一周前已经完成了，一直没有整理出来。本篇的知识主要来自Pro Git的前两章，&rdquo;分支&rdquo;我打算单独记一篇，毕竟是Git的杀手锏。
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">OtakuPoi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">OtakuPoi</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Git 学习笔记（一）</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-07-02 </span>
+        
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#配置和初始化">配置和初始化</a></li>
+<li><a href="#文件的生命周期">文件的生命周期</a></li>
+<li><a href="#添加文件与克隆">添加文件与克隆</a></li>
+<li><a href="#查看文件状态">查看文件状态</a></li>
+<li><a href="#忽略文件-gitignore">忽略文件 .gitignore</a></li>
+<li><a href="#分析文件差异">分析文件差异</a></li>
+<li><a href="#提交和删除">提交和删除</a></li>
+<li><a href="#查看历史">查看历史</a></li>
+<li><a href="#查看远程仓库">查看远程仓库</a></li>
+<li><a href="#添加远程仓库">添加远程仓库</a></li>
+<li><a href="#从远程仓库中抓取与拉取">从远程仓库中抓取与拉取</a></li>
+<li><a href="#推送到远程仓库">推送到远程仓库</a></li>
+<li><a href="#查看远程仓库-1">查看远程仓库</a></li>
+<li><a href="#远程仓库的重命名与移除">远程仓库的重命名与移除</a></li>
+<li><a href="#移除远程仓库">移除远程仓库</a></li>
+<li><a href="#列出标签">列出标签</a></li>
+<li><a href="#列出某一系列的标签">列出某一系列的标签</a></li>
+<li><a href="#创建标签">创建标签</a></li>
+<li><a href="#后期打标签">后期打标签</a></li>
+<li><a href="#共享标签">共享标签</a></li>
+<li><a href="#检出标签">检出标签</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>话说使用Git也有三个多月了，之前一直在用SVN管理代码。重复的敲了这么久的commit&amp;add指令，其实并没有真正理解其中的含义，系统的学习和整理一些知识，才能构建自己的知识体系。于是找来官方的文档，打算好好看一下。其实相关的学习在一周前已经完成了，一直没有整理出来。本篇的知识主要来自<a href="https://git-scm.com/book/zh/v2">Pro Git</a>的前两章，&rdquo;分支&rdquo;我打算单独记一篇，毕竟是Git的杀手锏。
+</p>
+
+<h2 id="配置和初始化">配置和初始化</h2>
+
+<pre><code class="language-git">git config --global user.name  配置提交的用户名
+git config --global user.email 配置提交的邮箱地址
+</code></pre>
+
+<p>&ndash;global选项用来配置全局设置，用户和邮箱设置好后，在配置好基本的信息后，在每一次提交时，系统都会自动的带上作者信息。</p>
+
+<p>完成配置后，选择需要进行版本管控的文件目录执行下列指令</p>
+
+<pre><code class="language-git">git init 创建.git子目录。.git可以用来跟踪文件版本信息。
+</code></pre>
+
+<h2 id="文件的生命周期">文件的生命周期</h2>
+
+<blockquote>
+<p>你工作目录下的每一个文件都不外乎这两种状态：已跟踪或未跟踪。 已跟踪的文件是指那些被纳入了版本控制的文件，在上一次快照中有它们的记录，在工作一段时间后，它们的状态可能处于未修改，已修改或已放入暂存区。 工作目录中除已跟踪文件以外的所有其它文件都属于未跟踪文件，它们既不存在于上次快照的记录中，也没有放入暂存区。 初次克隆某个仓库的时候，工作目录中的所有文件都属于已跟踪文件，并处于未修改状态。</p>
+</blockquote>
+
+<h2 id="添加文件与克隆">添加文件与克隆</h2>
+
+<pre><code class="language-git">git add *.c 添加后缀为.c的文件
+git add LICENSE 添加版权信息
+git commit -m &quot;msg&quot;
+
+git clone [url] 克隆远程服务器上几乎所有的文件以及过往的历史版本。
+git clone [url] [filename] 自定义克隆到本地仓库的名字。
+</code></pre>
+
+<h2 id="查看文件状态">查看文件状态</h2>
+
+<pre><code>git status 查看文件的状态
+git status -s 得到状态的简写状态
+git status --short
+</code></pre>
+
+<p>几种状态：
+- nothing to commit, working directory clean ： 所有更改均已提交
+- Untracked files: 未被跟踪文件
+- Changes to be committed: 使用add添加未跟踪文件后还未commit
+- Changes not staged for commit: 已跟踪文件修改后未commit</p>
+
+<h2 id="忽略文件-gitignore">忽略文件 .gitignore</h2>
+
+<p>*.[oa] 忽略所有以.o和.a结尾的文件。 一般这类对象文件和存档文件都是编译过程中出现的。
+*~ 忽略所有~结尾的文件  许多文本编辑软件（比如 Emacs）都用这样的文件名保存副本。
+文件 .gitignore 的格式规范如下：
+- 所有空行或者以 ＃ 开头的行都会被 Git 忽略
+- 可以使用标准的 glob 模式匹配。
+- 匹配模式可以以（/）开头防止递归。
+- 匹配模式可以以（/）结尾指定目录。
+- 要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号（!）取反。</p>
+
+<h2 id="分析文件差异">分析文件差异</h2>
+
+<p>git diff  当前做的哪些更新还没有暂存？ 有哪些更新已经暂存起来准备好了下次提交？</p>
+
+<p>与git status的区别： 通过文件补丁的格式显示具体哪些行发生了改变</p>
+
+<p>git diff 本身只显示尚未暂存的改动，而不是自上次提交以来所做的所有改动。 所以有时候你一下子暂存了所有更新过的文件后，运行 git diff 后却什么也没有，就是这个原因</p>
+
+<p>git difftool 分析文件差异，可视化工具</p>
+
+<h2 id="提交和删除">提交和删除</h2>
+
+<p>git commit 这种方式会启动文本编辑器以便于编辑本次提交说明。</p>
+
+<p>可以使用git commit -m &ldquo;msg&rdquo;的方式来一起提交</p>
+
+<p>git add 用来将文件添加到缓存区，便于详细的编辑提交信息。但有时过于繁琐，可以使用</p>
+
+<p>git commit -a -m &ldquo;msg&rdquo;来跳过缓存区使用缓存区</p>
+
+<p>git rm README.md 移除文件，如果删除前已经使用git add 放到了暂存区。必须使用强制删除选项git rm -f (force)这样的数据不能被git恢复</p>
+
+<p>另一种情况，当不希望文件被追踪。但仍然希望保留在当前目录，如果忘记添加到.gitignore不小心把一大堆 .a 文件添加到了暂存区。</p>
+
+<p>使用&ndash;cached 选项</p>
+
+<pre><code>git rm --cached README
+
+git rm log/\*.log删除log/目录下，以.log为扩展名的所有文件
+git rm \*~删除以~结尾的所有文件
+
+git mv README.md README对文件进行改名相当于执行了以下三条指令：
+mv README.md README
+git rm README.md
+git add README
+</code></pre>
+
+<h2 id="查看历史">查看历史</h2>
+
+<pre><code>git log 查看提交历史
+git log -p -2 查看最近两次提交的差异历史
+</code></pre>
+
+<p>-p 选项用来显示每次提交的内容差异</p>
+
+<p>-2 用来仅显示最近两次提交</p>
+
+<p>这个选项适用于查看团队其他成员提交代码时的更改，也可以使用下面的指令来查看简要信息：</p>
+
+<pre><code>git log --stat
+
+git log --pretty=oneline 将每个提交信息放在一行显示，还有short full fuller可以用
+
+git log --pretty=format:&quot;%h - %an :%s&quot; 按格式显示提交信息
+</code></pre>
+
+<h2 id="查看远程仓库">查看远程仓库</h2>
+
+<pre><code>git remote -v 查看配置的远程仓库列表
+</code></pre>
+
+<h2 id="添加远程仓库">添加远程仓库</h2>
+
+<pre><code>git remote add &lt;shortname&gt; &lt;url&gt;添加一个远程git仓库，同时指定一个方便检索的url
+</code></pre>
+
+<h2 id="从远程仓库中抓取与拉取">从远程仓库中抓取与拉取</h2>
+
+<pre><code>git fetch [remote-name]
+</code></pre>
+
+<p>如果你使用clone命令克隆了一个仓库，命令会自动将其添加为远程默认仓库并默认以“origin”为简写。git fetch origin 会抓取克隆（或上一次抓取）后新推送的所有工作。fetch命令会将数据拉取到你的本地仓库，他并不会自动合并或修改你当前的工作，当准备好时你必须手动将其合并入你的工作</p>
+
+<pre><code>git pull抓取然后合并远程分支到当前分支
+</code></pre>
+
+<p>默认情况下，git clone 命令会自动设置本地master分支跟踪克隆的远程仓库的master分支（或不管是什么名字的默认分支）运行git pull 通常会从最初克隆的服务器上抓取数据并自动尝试合并到当前所在的分支。</p>
+
+<h2 id="推送到远程仓库">推送到远程仓库</h2>
+
+<pre><code>git push origin master
+</code></pre>
+
+<p>推送成功的前提是服务器仓库没有更新，否则需要先git pull 拉取合并后再推送才能成功。</p>
+
+<h2 id="查看远程仓库-1">查看远程仓库</h2>
+
+<pre><code>git remote show origin
+</code></pre>
+
+<h2 id="远程仓库的重命名与移除">远程仓库的重命名与移除</h2>
+
+<pre><code>git remote rename &lt;old name&gt;&lt;new name&gt;
+</code></pre>
+
+<h2 id="移除远程仓库">移除远程仓库</h2>
+
+<pre><code>git remote rm &lt;name&gt;
+</code></pre>
+
+<h2 id="列出标签">列出标签</h2>
+
+<pre><code>git tag
+</code></pre>
+
+<h2 id="列出某一系列的标签">列出某一系列的标签</h2>
+
+<pre><code>git tag -l &quot;v1.8.5*&quot; 使用通配符查看V1.8.5系列
+</code></pre>
+
+<h2 id="创建标签">创建标签</h2>
+
+<pre><code>git tag -a v1.4 -m &quot;msg&quot; 创建附注标签
+git show v1.4 查看标签和对应的信息
+
+git tag v1.4 轻量标签
+</code></pre>
+
+<h2 id="后期打标签">后期打标签</h2>
+
+<pre><code>git log --pretty=oneline 列出提交历史
+git tag -a v1.4 9fc1b02 需要在末尾指定校验和或(9fc1b02 )部分检验和
+</code></pre>
+
+<h2 id="共享标签">共享标签</h2>
+
+<p>默认情况下，git push命令并不会传送标签到远程服务器仓库上，在创建完标签后必须显示的推送标签到共享服务器</p>
+
+<pre><code>git push origin [tagname] git push origin v1.5
+</code></pre>
+
+<p>也可以使用&ndash;tags选项一次推送很多标签，这将会把所有不在远程仓库服务器上的标签全部传送到那里</p>
+
+<pre><code>git push origin --tags
+</code></pre>
+
+<h2 id="检出标签">检出标签</h2>
+
+<p>在git中并不能真的检出一个标签，因为他们不能像分支一样来回移动。如果想要工作目录与仓库中特定的标签版本完全一样，可以使用</p>
+
+<pre><code>git checkout -b [branch name]  [tag name]
+git checkout -b version2 v2.0.0
+</code></pre>
+
+<p>如果在这之后又进行了一次提交，version2分支会因为改动向前移动，version2会与标签v2.0.0不同。</p>
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">artharyoung</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2016-07-02</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2016-7-4/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Git 学习笔记（二）</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/karel-and-java/">
+            <span class="next-text nav-default">编程方法学第三课学习笔记</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+  
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:artharyoungcn@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://www.twitter.com/artharyoung" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://www.github.com/artharyoung" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.otakupoi.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2016 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">artharyoung</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=3.0.1"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

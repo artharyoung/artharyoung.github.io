@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OtakuPoi</title>
+    <link>http://www.otakupoi.com/</link>
+    <description>Recent content on OtakuPoi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 26 Aug 2016 21:59:22 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.otakupoi.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ExoPlayer 中 MediaController 的定制</title>
+      <link>http://www.otakupoi.com/post/2016-8-26/</link>
+      <pubDate>Fri, 26 Aug 2016 21:59:22 +0000</pubDate>
+      
+      <guid>http://www.otakupoi.com/post/2016-8-26/</guid>
+      <description>&lt;p&gt;在播放器的组件中，MediaController 主要负责用户在播放中的界面交互，比如进度条的显示与操作、快进、快退、上一个、下一个等。也可以根据需求定制一些自己的操作需求，比如播放器中输入的是直播（或者HLS）的 m3u8 的视频流。那么可能需要添加刷新界面的操作按钮。这一篇主要梳理一下自己在开发 &lt;a href=&#34;https://github.com/AndroidTips/MDVideo&#34;&gt;MDVideo&lt;/a&gt;过程中遇到的问题，然后以自己所理解的方式阐述一下  MediaController 到底是什么东西。如有错误，还请指正。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ExoPlayer Demo 媒体类型参数</title>
+      <link>http://www.otakupoi.com/post/2016-7-9/</link>
+      <pubDate>Sat, 09 Jul 2016 19:37:59 +0000</pubDate>
+      
+      <guid>http://www.otakupoi.com/post/2016-7-9/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/google/ExoPlayer&#34;&gt;ExoPlayer&lt;/a&gt;是Google开源的播放器，可以算是&lt;a href=&#34;https://developer.android.com/reference/android/media/MediaPlayer.html&#34;&gt;MediaPlayer&lt;/a&gt;的扩展版本吧,因为跟一些小伙伴发起了一个播放器开发的项目，所以接下来打算把学到的东西都写下来。一来，可以方便和其他小伙伴交流，二来，也方便以后自己复习。碍于自己Android知识水平有限，如有错误还请大家多多指教。
+- 注：ExoPlayer版本 r1.5.9，单独分离出来的&lt;a href=&#34;https://github.com/artharyoung/ExoPlayerDemo&#34;&gt;ExoPlayerDemo&lt;/a&gt;
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git 学习笔记（二）</title>
+      <link>http://www.otakupoi.com/post/2016-7-4/</link>
+      <pubDate>Mon, 04 Jul 2016 23:06:19 +0000</pubDate>
+      
+      <guid>http://www.otakupoi.com/post/2016-7-4/</guid>
+      <description>&lt;p&gt;Git存储快照流
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git 学习笔记（一）</title>
+      <link>http://www.otakupoi.com/post/2016-7-2/</link>
+      <pubDate>Sat, 02 Jul 2016 14:49:43 +0000</pubDate>
+      
+      <guid>http://www.otakupoi.com/post/2016-7-2/</guid>
+      <description>&lt;p&gt;话说使用Git也有三个多月了，之前一直在用SVN管理代码。重复的敲了这么久的commit&amp;amp;add指令，其实并没有真正理解其中的含义，系统的学习和整理一些知识，才能构建自己的知识体系。于是找来官方的文档，打算好好看一下。其实相关的学习在一周前已经完成了，一直没有整理出来。本篇的知识主要来自&lt;a href=&#34;https://git-scm.com/book/zh/v2&#34;&gt;Pro Git&lt;/a&gt;的前两章，&amp;rdquo;分支&amp;rdquo;我打算单独记一篇，毕竟是Git的杀手锏。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>编程方法学第三课学习笔记</title>
+      <link>http://www.otakupoi.com/post/karel-and-java/</link>
+      <pubDate>Sun, 26 Jun 2016 16:18:01 +0000</pubDate>
+      
+      <guid>http://www.otakupoi.com/post/karel-and-java/</guid>
+      <description>&lt;h2 id=&#34;off-by-one-bug-差一错误&#34;&gt;off-by-one bug 差一错误&lt;/h2&gt;
+
+&lt;p&gt;差一错误（英语：Off-by-one error，缩写OBOE）是在计数时由于边界条件判断失误导致结果多了一或少了一的错误，通常指计算机编程中循环多了一次或者少了一次的程序错误，属于逻辑错误的一种。比如，程序员在循环中进行比较的时候，本该使用“小于等于”，但却使用了“小于”，或者是程序员没有考虑到一个序列是从0而不是1开始（许多程序语言的数组下标都是这样）。在数学领域，此错误也时有发生。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E5%B7%AE%E4%B8%80%E9%94%99%E8%AF%AF&#34;&gt;wiki&lt;/a&gt;
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>APP Bar 的使用</title>
+      <link>http://www.otakupoi.com/post/2016-6-16/</link>
+      <pubDate>Thu, 16 Jun 2016 22:51:52 +0000</pubDate>
+      
+      <guid>http://www.otakupoi.com/post/2016-6-16/</guid>
+      <description>&lt;p&gt;最近在自己的项目&lt;a href=&#34;https://github.com/AndroidTips/MDVideo&#34;&gt;MDVideo&lt;/a&gt;中添加了半透明的 StatusBar 效果，索性把官方文档中关于这一部分的讲解总结一下，加强一下这一块的记忆。之前做了一年半的 TV 应用开发，由于交互上只处理 OnKey 的事件，所以应用基本都是采用 FullScreen 样式。并且由于当时使用的 Eclipse对 support V7 包的支持完全令人无语，导致这一块细节的了解还是比较陌生的。&lt;/p&gt;
+
+&lt;p&gt;Google 在 Android 5.0 引入 Material Design，同时很多 ActionBar 的方法被弃用了，通过在 Appcombat V7 包中添加 ToolBar 来替代原有的 ActionBar。由于是引用 Library, 这在版本兼容上避免了很多问题。ToolBar 之前，在 Android 3.0开始，ActionBar包含于 Theme.Holo 主题中，本篇会引用 ActionBar 的一些介绍,以便于了解 ActionBar 在 APP 中的作用，ToolBar 的设计理念与它是一样的，但不赘述怎么使用，因为已经过时了。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Pattern与Matcher进行用户名与手机号校验</title>
+      <link>http://www.otakupoi.com/post/2016-6-12/</link>
+      <pubDate>Sun, 12 Jun 2016 21:59:09 +0000</pubDate>
+      
+      <guid>http://www.otakupoi.com/post/2016-6-12/</guid>
+      <description>&lt;p&gt;Pattern|&lt;a href=&#34;https://developer.android.com/reference/java/util/regex/Pattern.html&#34;&gt;Android API&lt;/a&gt;
+Matcher|&lt;a href=&#34;https://developer.android.com/reference/java/util/regex/Matcher.html&#34;&gt;Android API&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;username校验&#34;&gt;UserName校验&lt;/h2&gt;
+
+&lt;p&gt;这样的功能需求多用于账号注册，可以通过如下的正则表达式实现支持字母、数字、下划线的6~16位字符账号注册&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public static boolean isValidUserName(String username){
+       Pattern p = Pattern.compile(&amp;quot;(^[a-zA-Z0-9_]{6,16})&amp;quot;);
+       Matcher m = p.matcher(username);
+       return m.matches();
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>APP分享功能的实现</title>
+      <link>http://www.otakupoi.com/post/2016-6-4/</link>
+      <pubDate>Sat, 04 Jun 2016 22:30:53 +0000</pubDate>
+      
+      <guid>http://www.otakupoi.com/post/2016-6-4/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;说起在APP中添加分享功能，也在项目开发中集成过第三方的社会化组件，功能做出来了之后就发现坑其实挺多的，比如APP体积增加3~4MB，微信、微博等社区集成都需要申请appkey等。当然，一般第三方的社会化组件往往不只是集成分享功能，还会集成账号授权登陆等，而系统的分享功能就比较单纯了。这两天学习了一下系统自带的分享功能，写一篇笔记记录一下。
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用ViewPager &#43; RadioGroup实现图片轮播等图片展示功能</title>
+      <link>http://www.otakupoi.com/post/viewpager-image-display/</link>
+      <pubDate>Sat, 21 May 2016 16:43:55 +0000</pubDate>
+      
+      <guid>http://www.otakupoi.com/post/viewpager-image-display/</guid>
+      <description>源代码 - tips:对于上面的两种效果，参考过网络上许多实现方法，大多数都是通过自定义控件的各项属性等来实现。 个人还是倾向于使用android</description>
+    </item>
+    
+    <item>
+      <title>Android序列化 Parcelable与Serializable</title>
+      <link>http://www.otakupoi.com/post/my-new-post/</link>
+      <pubDate>Wed, 18 May 2016 22:27:20 +0000</pubDate>
+      
+      <guid>http://www.otakupoi.com/post/my-new-post/</guid>
+      <description>&lt;h2 id=&#34;作用&#34;&gt;作用：&lt;/h2&gt;
+
+&lt;p&gt;序列化是为了保存在内存中的各种对象的状态(也就是实例变量，不是方法)，并且可以把保存的对象状态再读出来。即：序列化是一种能比较好的保存对象状态的机制。&lt;/p&gt;
+
+&lt;h2 id=&#34;优点&#34;&gt;优点：&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;永久性的保存对象，保存对象的字节序列到本地文件中；&lt;/li&gt;
+&lt;li&gt;通过序列化对象在网络中传递对象；&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;通过序列化在进程中传递对象；
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

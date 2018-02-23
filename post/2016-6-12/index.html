@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用Pattern与Matcher进行用户名与手机号校验 - OtakuPoi</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="artharyoung" />
+  <meta name="description" content="Pattern|Android API Matcher|Android API
+UserName校验 这样的功能需求多用于账号注册，可以通过如下的正则表达式实现支持字母、数字、下划线的6~16位字符账号注册
+public static boolean isValidUserName(String username){ Pattern p = Pattern.compile(&amp;quot;(^[a-zA-Z0-9_]{6,16})&amp;quot;); Matcher m = p.matcher(username); return m.matches(); }  
+" />
+
+  <meta name="keywords" content="Hugo, artharyoung, otakupoi" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.34" />
+
+
+<link rel="canonical" href="http://www.otakupoi.com/post/2016-6-12/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.0.1" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="使用Pattern与Matcher进行用户名与手机号校验" />
+<meta property="og:description" content="Pattern|Android API
+Matcher|Android API
+
+UserName校验
+
+这样的功能需求多用于账号注册，可以通过如下的正则表达式实现支持字母、数字、下划线的6~16位字符账号注册
+
+public static boolean isValidUserName(String username){
+       Pattern p = Pattern.compile(&quot;(^[a-zA-Z0-9_]{6,16})&quot;);
+       Matcher m = p.matcher(username);
+       return m.matches();
+  }
+
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.otakupoi.com/post/2016-6-12/" />
+
+
+
+<meta property="article:published_time" content="2016-06-12T21:59:09&#43;00:00"/>
+
+<meta property="article:modified_time" content="2016-06-12T21:59:09&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="使用Pattern与Matcher进行用户名与手机号校验">
+<meta itemprop="description" content="Pattern|Android API
+Matcher|Android API
+
+UserName校验
+
+这样的功能需求多用于账号注册，可以通过如下的正则表达式实现支持字母、数字、下划线的6~16位字符账号注册
+
+public static boolean isValidUserName(String username){
+       Pattern p = Pattern.compile(&quot;(^[a-zA-Z0-9_]{6,16})&quot;);
+       Matcher m = p.matcher(username);
+       return m.matches();
+  }
+
+
+">
+
+
+<meta itemprop="datePublished" content="2016-06-12T21:59:09&#43;00:00" />
+<meta itemprop="dateModified" content="2016-06-12T21:59:09&#43;00:00" />
+<meta itemprop="wordCount" content="497">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="使用Pattern与Matcher进行用户名与手机号校验"/>
+<meta name="twitter:description" content="Pattern|Android API
+Matcher|Android API
+
+UserName校验
+
+这样的功能需求多用于账号注册，可以通过如下的正则表达式实现支持字母、数字、下划线的6~16位字符账号注册
+
+public static boolean isValidUserName(String username){
+       Pattern p = Pattern.compile(&quot;(^[a-zA-Z0-9_]{6,16})&quot;);
+       Matcher m = p.matcher(username);
+       return m.matches();
+  }
+
+
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">OtakuPoi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">OtakuPoi</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用Pattern与Matcher进行用户名与手机号校验</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-06-12 </span>
+        
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#username校验">UserName校验</a></li>
+<li><a href="#手机号校验">手机号校验</a></li>
+<li><a href="#其他字符串校验">其他字符串校验</a></li>
+<li><a href="#参考">参考</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <p>Pattern|<a href="https://developer.android.com/reference/java/util/regex/Pattern.html">Android API</a>
+Matcher|<a href="https://developer.android.com/reference/java/util/regex/Matcher.html">Android API</a></p>
+
+<h2 id="username校验">UserName校验</h2>
+
+<p>这样的功能需求多用于账号注册，可以通过如下的正则表达式实现支持字母、数字、下划线的6~16位字符账号注册</p>
+
+<pre><code class="language-java">public static boolean isValidUserName(String username){
+       Pattern p = Pattern.compile(&quot;(^[a-zA-Z0-9_]{6,16})&quot;);
+       Matcher m = p.matcher(username);
+       return m.matches();
+  }
+</code></pre>
+
+<p></p>
+
+<h2 id="手机号校验">手机号校验</h2>
+
+<p>手机号校验首先要了解手机号有哪些，以国内的手机号为例：
+&gt; 移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188</p>
+
+<blockquote>
+<p>联通：130、131、132、152、155、156、185、186</p>
+
+<p>电信：133、153、180、189、（1349卫通）</p>
+</blockquote>
+
+<p>编写正则表达式进行实现：</p>
+
+<pre><code class="language-java">public static boolean isValidMobile(String mobile){
+        Pattern p = Pattern.compile(&quot;^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$&quot;);
+        Matcher m = p.matcher(mobiles);
+        return m.matches();
+    }
+</code></pre>
+
+<p>以上对于手机号的校验非常严格，在Android的Patterns类中封装了手机号校验的正则表达式：</p>
+
+<pre><code class="language-java">public static final Pattern PHONE
+        = Pattern.compile(                      // sdd = space, dot, or dash
+                &quot;(\\+[0-9]+[\\- \\.]*)?&quot;        // +&lt;digits&gt;&lt;sdd&gt;*
+                + &quot;(\\([0-9]+\\)[\\- \\.]*)?&quot;   // (&lt;digits&gt;)&lt;sdd&gt;*
+                + &quot;([0-9][0-9\\- \\.]+[0-9])&quot;); // &lt;digit&gt;&lt;digit|sdd&gt;+&lt;digit&gt;
+</code></pre>
+
+<p>可见，对于手机号只要求是0~9的数字。使用SDK中的正则表达式：</p>
+
+<pre><code class="language-java">public static boolean isValidMobile(String phone) {
+        return Patterns.PHONE.matcher(phone).matches();
+  }
+</code></pre>
+
+<h2 id="其他字符串校验">其他字符串校验</h2>
+
+<p>除此之外，Patterns中还封装了Email、IP-address、WEB_URL等正则表达式。</p>
+
+<p>校验Email地址：</p>
+
+<pre><code class="language-java"> private boolean isValidMail(String email) {
+    return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+  }
+</code></pre>
+
+<p>校验URL:</p>
+
+<pre><code class="language-java">  private boolean isValidWebUrl(String url) {
+    return Patterns.WEB_URL.matcher(url).matches();
+  }
+</code></pre>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="http://www.cnblogs.com/lonelysharer/archive/2012/03/08/2384773.html">Java正则表达式：Pattern类和Matcher类</a></p>
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">artharyoung</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2016-06-12</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2016-6-16/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">APP Bar 的使用</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2016-6-4/">
+            <span class="next-text nav-default">APP分享功能的实现</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+  
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:artharyoungcn@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://www.twitter.com/artharyoung" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://www.github.com/artharyoung" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.otakupoi.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2016 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">artharyoung</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=3.0.1"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
