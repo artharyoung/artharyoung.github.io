@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.34" />
+<meta name="generator" content="Hugo 0.36.1" />
 
 
 <link rel="canonical" href="http://www.otakupoi.com/" />
@@ -57,7 +57,7 @@
 
 
 
-<meta property="og:updated_time" content="2016-06-04T22:30:53&#43;00:00"/>
+<meta property="og:updated_time" content="2016-06-12T21:59:09&#43;00:00"/>
 
 
 
@@ -71,7 +71,8 @@
 <meta itemprop="name" content="OtakuPoi">
 <meta itemprop="description" content="artharyoung&#39;s blog">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="OtakuPoi"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OtakuPoi"/>
 <meta name="twitter:description" content="artharyoung&#39;s blog"/>
 
 <!--[if lte IE 9]>
@@ -136,6 +137,41 @@
   <section id="posts" class="posts">
     
     
+    
+      <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2016-6-12/">使用Pattern与Matcher进行用户名与手机号校验</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2016-06-12 </span>
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>Pattern|<a href="https://developer.android.com/reference/java/util/regex/Pattern.html">Android API</a>
+Matcher|<a href="https://developer.android.com/reference/java/util/regex/Matcher.html">Android API</a></p>
+
+<h2 id="username校验">UserName校验</h2>
+
+<p>这样的功能需求多用于账号注册，可以通过如下的正则表达式实现支持字母、数字、下划线的6~16位字符账号注册</p>
+
+<pre><code class="language-java">public static boolean isValidUserName(String username){
+       Pattern p = Pattern.compile(&quot;(^[a-zA-Z0-9_]{6,16})&quot;);
+       Matcher m = p.matcher(username);
+       return m.matches();
+  }
+</code></pre>
+
+<p></p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2016-6-12/" class="read-more-link">Read more..</a>
+    </div>
+  </div>
+</article>
+
     
       <article class="post">
   <header class="post-header">

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用 Hugo 搭建博客的一些小细节 - OtakuPoi</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="artharyoung" />
+  <meta name="description" content="写在前面的碎碎念 磨磨蹭蹭的看了将近一个月的文档，也摸索尝试了一些指令之后，最终还是把把 blog 从 hexo 迁移到了hugo。关于 hugo 也不打算做过多的介绍，文" />
+
+  <meta name="keywords" content="Hugo, artharyoung, otakupoi" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.36.1" />
+
+
+<link rel="canonical" href="http://www.otakupoi.com/post/2018-2-24/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+<link href="/dist/even.min.css?v=3.0.1" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="使用 Hugo 搭建博客的一些小细节" />
+<meta property="og:description" content="写在前面的碎碎念 磨磨蹭蹭的看了将近一个月的文档，也摸索尝试了一些指令之后，最终还是把把 blog 从 hexo 迁移到了hugo。关于 hugo 也不打算做过多的介绍，文" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.otakupoi.com/post/2018-2-24/" />
+
+
+
+<meta property="article:published_time" content="2018-02-24T10:40:39&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-02-24T10:40:39&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="使用 Hugo 搭建博客的一些小细节">
+<meta itemprop="description" content="写在前面的碎碎念 磨磨蹭蹭的看了将近一个月的文档，也摸索尝试了一些指令之后，最终还是把把 blog 从 hexo 迁移到了hugo。关于 hugo 也不打算做过多的介绍，文">
+
+
+<meta itemprop="datePublished" content="2018-02-24T10:40:39&#43;08:00" />
+<meta itemprop="dateModified" content="2018-02-24T10:40:39&#43;08:00" />
+<meta itemprop="wordCount" content="830">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用 Hugo 搭建博客的一些小细节"/>
+<meta name="twitter:description" content="写在前面的碎碎念 磨磨蹭蹭的看了将近一个月的文档，也摸索尝试了一些指令之后，最终还是把把 blog 从 hexo 迁移到了hugo。关于 hugo 也不打算做过多的介绍，文"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">OtakuPoi</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">OtakuPoi</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用 Hugo 搭建博客的一些小细节</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-02-24 </span>
+        
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#写在前面的碎碎念">写在前面的碎碎念</a></li>
+<li><a href="#安装">安装</a></li>
+<li><a href="#新建站点文件">新建站点文件</a>
+<ul>
+<li><a href="#新建文档">新建文档</a></li>
+<li><a href="#实时预览">实时预览</a></li>
+<li><a href="#文档相关参数说明">文档相关参数说明</a></li>
+<li><a href="#编译站点文件">编译站点文件</a></li>
+<li><a href="#插入图片">插入图片</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="写在前面的碎碎念">写在前面的碎碎念</h1>
+
+<p>磨磨蹭蹭的看了将近一个月的文档，也摸索尝试了一些指令之后，最终还是把把 blog 从 hexo 迁移到了hugo。关于 hugo 也不打算做过多的介绍，文档都很详细。这是使用 Golang 开发的一个静态网页生成工具，使用过程中发现有以下优点：</p>
+
+<ul>
+<li>升级简单，替换安装文件即可</li>
+<li>跨平台支持，windows、macos、linux、freeBSD ······</li>
+<li>编译速度快</li>
+<li>多设备移植方便，不像 hexo 不方便多 PC 操作，生成的网页直接 push 到服务器即可，不像 hexo 和 git 指令绑在一起</li>
+</ul>
+
+<p>如人饮水，冷暖自知。好东西要自己用过了才知道。</p>
+
+<h1 id="安装">安装</h1>
+
+<p>仅以 Windows 平台为例，<a href="https://github.com/gohugoio/hugo/releases">下载</a>安装包解压后将二进制文件放在自己认为合适的位置，然后将该路径配置在系统环境变量中，打开 CMD 输入</p>
+
+<pre><code>$hugo version
+</code></pre>
+
+<p>显示版本号即安装成功了。这里遇到设置环境变量指令仍然没有效果，尝试 cd 到二进制文件目录打开命令管理器，仍然是没有效果的，最后通过如下指令设置(二进制文件在 D:\Hugo\bin 路径):</p>
+
+<pre><code>$D:\Hugo\bin&gt;set PATH=%PATH%;D:\Hugo\bin
+</code></pre>
+
+<h1 id="新建站点文件">新建站点文件</h1>
+
+<p>选取合适的路径，这里建议放在二进制文件父目录的子文件夹里，便于升级二进制文件时一起维护</p>
+
+<pre><code>$hugo new site otakupoi.com
+</code></pre>
+
+<p>生成的文件目录说明请查看<a href="https://gohugo.io/documentation/">文档</a>，不多赘述。</p>
+
+<h2 id="新建文档">新建文档</h2>
+
+<pre><code>$hugo new post/2018-2-24.md
+</code></pre>
+
+<p>在 /content/post 路径下生成文档</p>
+
+<h2 id="实时预览">实时预览</h2>
+
+<pre><code>$ hugo server -t even --buildDrafts
+</code></pre>
+
+<p>打开相应本地网址后即可预览博客效果。参数说明：
+- -t：使用even主题渲染页面
+- &ndash;buildDrafts：生成标志为草稿的页面</p>
+
+<h2 id="文档相关参数说明">文档相关参数说明</h2>
+
+<ul>
+<li>date 自动增加时间标签</li>
+<li>draft 设置为false的时候会被编译为HTML，true则不会编译和发表，在本地修改文章时候用true。</li>
+<li>title 设置文章标题</li>
+<li>tags 数组，可以设置多个标签，逗号隔开，hugo会自动在你博客主页下生成标签的子URL，通过这个URL可以看到所有具有该标签的文章。</li>
+<li>categories 文章分类，跟Tag功能差不多，只能设置一个字符串。</li>
+</ul>
+
+<h2 id="编译站点文件">编译站点文件</h2>
+
+<pre><code>$hugo
+</code></pre>
+
+<p>在 /public 路径下生成网站文件，以 github pages 为例，push 到 github 上即可。</p>
+
+<h2 id="插入图片">插入图片</h2>
+
+<p>使用本地相对路径按文档引用没有成功，暂时解决方案为用 MarkDown 语法引用网络 Url。可将图片上传至七牛云或者 github 仓库。</p>
+
+<p>以上仅为使用过程中的部分操作，更多细节定制，如主题及站点文件配置请查看官方文档。</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">artharyoung</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-02-24</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/2016-8-26/">
+            <span class="next-text nav-default">ExoPlayer 中 MediaController 的定制</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+
+  
+
+  
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:artharyoungcn@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://www.twitter.com/artharyoung" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://www.github.com/artharyoung" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.otakupoi.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2016 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">artharyoung</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/even.min.js?v=3.0.1"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

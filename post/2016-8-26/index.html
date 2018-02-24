@@ -26,7 +26,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.34" />
+<meta name="generator" content="Hugo 0.36.1" />
 
 
 <link rel="canonical" href="http://www.otakupoi.com/post/2016-8-26/" />
@@ -83,7 +83,8 @@
 
 
 <meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="ExoPlayer 中 MediaController 的定制"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ExoPlayer 中 MediaController 的定制"/>
 <meta name="twitter:description" content="在播放器的组件中，MediaController 主要负责用户在播放中的界面交互，比如进度条的显示与操作、快进、快退、上一个、下一个等。也可以根据需求定制一些自己的操作需求，比如播放器中输入的是直播（或者HLS）的 m3u8 的视频流。那么可能需要添加刷新界面的操作按钮。这一篇主要梳理一下自己在开发 MDVideo过程中遇到的问题，然后以自己所理解的方式阐述一下  MediaController 到底是什么东西。如有错误，还请指正。
 "/>
 
@@ -295,6 +296,11 @@ abstract void show(int timeout);
       
       <nav class="post-nav">
         
+          <a class="prev" href="/post/2018-2-24/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">使用 Hugo 搭建博客的一些小细节</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
         
           <a class="next" href="/post/2016-7-9/">
             <span class="next-text nav-default">ExoPlayer Demo 媒体类型参数</span>

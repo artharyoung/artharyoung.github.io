@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.otakupoi.com/post/2018-2-24/</loc>
+    <lastmod>2018-02-24T10:40:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://www.otakupoi.com/post/2016-8-26/</loc>
     <lastmod>2016-08-26T21:59:22+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -80,14 +87,14 @@
   
   <url>
     <loc>http://www.otakupoi.com/</loc>
-    <lastmod>2016-08-26T21:59:22+00:00</lastmod>
+    <lastmod>2018-02-24T10:40:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.otakupoi.com/post/</loc>
-    <lastmod>2016-08-26T21:59:22+00:00</lastmod>
+    <lastmod>2018-02-24T10:40:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
